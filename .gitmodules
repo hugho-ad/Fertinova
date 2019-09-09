@@ -10,10 +10,6 @@
 	path = vendor-bills
 	url = git@git.vauxoo.com:vauxoo/vendor-bills.git
 	branch = 12.0
-[submodule "fertinova"]
-	path = fertinova
-	url = git@git.vauxoo.com:Vauxoo/fertinova.git
-        branch = 12.0
 [submodule "server-tools"]
 	path = server-tools
 	url = git@github.com:Vauxoo/server-tools.git
