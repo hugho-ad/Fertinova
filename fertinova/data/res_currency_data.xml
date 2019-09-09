@@ -1,0 +1,6 @@
+<odoo noupdate="1">
+    <record forcecreate="True" id="fertinova_rate_precision" model="decimal.precision">
+        <field name="name">Rate Precision</field>
+        <field name="digits">8</field>
+    </record>
+</odoo>

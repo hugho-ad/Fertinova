@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+
+    <record id="base.main_partner" model="res.partner">
+        <field name="company_type">company</field>
+        <field name="street">CARR. ATOTONILCO - TOTOTLAN</field>
+        <field name="street2"></field>
+        <field name="zip">47779</field>
+        <field name="phone">(33)3627-6553</field>
+        <field name="email"></field>
+        <field name="vat">FER070322648</field>
+        <field name="property_account_position_id" eval="ref('l10n_mx.account_fiscal_position_601_fr')"/>
+        <field name="city_id" eval="False"/>
+        <field name="state_id" eval="ref('base.state_mx_jal')"/>
+        <field name="country_id" eval="ref('base.mx')"/>
+    </record>
+
+    <record id="data_res_partner_invoice_address_fertinova" model="res.partner">
+        <field name="type">invoice</field>
+        <field name="parent_id" eval="ref('base.main_partner')"/>
+        <field name="street">CARR. ATOTONILCO - TOTOTLAN</field>
+        <field name="street2"></field>
+        <field name="city_id" eval="False"/>
+        <field name="state_id" eval="ref('base.state_mx_jal')"/>
+        <field name="country_id" eval="ref('base.mx')"/>
+        <field name="zip">47779</field>
+        <field name="phone">(33)3627-6553</field>
+        <field name="email"></field>
+    </record>
+
+    <record id="base.main_company" model="res.company">
+        <field name="name">FERTINOVA SA DE CV</field>
+        <field name="logo" type="base64" file="fertinova/static/img/logo.png"/>
+        <field name="street">CARR. ATOTONILCO - TOTOTLAN</field>
+        <field name="street2"></field>
+        <field name="zip">47779</field>
+        <field name="city"></field>
+        <field name="phone">(33)3627-6553</field>
+        <field name="fax"></field>
+        <field name="vat">FER070322648</field>
+        <field name="address_parent_company_id" eval="data_res_partner_invoice_address_fertinova"/>
+        <field name="currency_id" ref="base.MXN"/>
+        <field name="country_id" eval="ref('base.mx')"/>
+        <field name="state_id" eval="ref('base.state_mx_jal')"/>
+        <field name="email"></field>
+        <field name="website"></field>
+        <field name="rml_footer_readonly"></field>
+    </record>
+
+</odoo>
