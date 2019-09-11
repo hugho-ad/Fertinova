@@ -18,3 +18,7 @@
 	path = server-tools
 	url = git@github.com:Vauxoo/server-tools.git
 	branch = 12.0
+[submodule "mexico-document"]
+	path = mexico-document
+	url = git@git.vauxoo.com:vauxoo/mexico-document.git
+	branch = 12.0
