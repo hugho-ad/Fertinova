@@ -81,6 +81,21 @@ msgid "Specify the agreed amount"
 msgstr "Especifique el monto acordado"
 
 #. module: fertinova
+#: model:ir.model.fields,field_description:fertinova.field_sale_order_line__subtotal_qty_delivered
+msgid "Sub. Qty. Delivered"
+msgstr "Sub. Cant. Entregada"
+
+#. module: fertinova
+#: model:ir.model.fields,field_description:fertinova.field_sale_order_line__subtotal_qty_invoiced
+msgid "Sub. Qty. Invoiced"
+msgstr "Sub. Cant. Fact."
+
+#. module: fertinova
+#: model:ir.model.fields,field_description:fertinova.field_sale_order_line__subtotal_qty_to_invoice
+msgid "Sub. Qty. to Invoice"
+msgstr "Sub. Cant. a Facturar"
+
+#. module: fertinova
 #: model:ir.model,name:fertinova.model_internal_transfer_multicurrency
 msgid "Internal transfer with agreed amount"
 msgstr "Transferencia interna con monto acordado"
