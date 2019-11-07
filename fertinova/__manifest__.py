@@ -24,6 +24,7 @@
         'mrp',
         'purchase',
         'sale_management',
+        'currency_rate_live',
     ],
     'data': [
         'data/res_company.xml',
