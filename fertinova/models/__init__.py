@@ -4,3 +4,4 @@
 from . import res_config_settings
 from . import res_currency
 from . import sale
+from . import stock_picking
