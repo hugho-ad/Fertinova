@@ -6,10 +6,8 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath
-                expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='product_uom_qty']"
-                position="after">
-                <field name="qty_to_deliver"/>
+          <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+              <field name="qty_to_deliver" attrs="{'invisible': [('state', 'not in', ['sale', 'done'])]}" />
             </xpath>          
         </field>
     </record>
