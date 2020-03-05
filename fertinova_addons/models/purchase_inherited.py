@@ -11,7 +11,8 @@ class Purchase_Line_Inherited(models.Model):
     #########################################################
     qty_to_receive = fields.Float(string='Cantidad por recibir', 
                                   digits=dp.get_precision('Product Unit of Measure'), 
-                                  compute='_get_qty_to_receive')
+                                  compute='_get_qty_to_receive',
+                                  store=True)
 
     #########################################################
     # MODEL METHODS
