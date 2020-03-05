@@ -12,9 +12,11 @@ class Purchase_Line_Inherited(models.Model):
     qty_to_receive = fields.Float(string='Quantity to receive', 
                                   digits=dp.get_precision('Product Unit of Measure'), 
                                   compute='_get_qty_to_receive',
-                                  store=True)
+                                  store=True,
+                                  translate=True
+                                 )
 
-    #########################################################
+    ##########################################################
     # MODEL METHODS
     #########################################################
     @api.depends('product_qty', 'qty_received')
