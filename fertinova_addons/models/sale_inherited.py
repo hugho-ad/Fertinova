@@ -9,7 +9,7 @@ class Sale_Line_Inherited(models.Model):
     #########################################################
     # MODEL FIELDS
     #########################################################
-    qty_to_deliver = fields.Float(string='Cantidad por entregar', 
+    qty_to_deliver = fields.Float(string='Quantity_to_deliver', 
                                   digits=dp.get_precision('Product Unit of Measure'), 
                                   compute='_get_qty_to_deliver',
                                   store=True,
@@ -21,6 +21,7 @@ class Sale_Line_Inherited(models.Model):
     #########################################################
     @api.depends('product_uom_qty', 'qty_delivered')
     def _get_qty_to_deliver(self):
+        '''This method computes the difference between product on demand and quantity delivered'''
         for rec in self:
             if not rec.product_uom_qty and rec.qty_delivered:
                 rec.qty_to_deliver= 0.0
