@@ -9,7 +9,7 @@ class Sale_Line_Inherited(models.Model):
     #########################################################
     # MODEL FIELDS
     #########################################################
-    qty_to_deliver = fields.Float(string='Quantity to deliver', 
+    qty_to_deliver = fields.Float(string='Cantidad por entregar', 
                                   digits=dp.get_precision('Product Unit of Measure'), 
                                   compute='_get_qty_to_deliver',
                                   store=True,
