@@ -31,6 +31,11 @@ msgid "Quantity to receive"
 msgstr "Cantidad a recibir"
 
 #. module: fertinova_addons
+#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move__analytic_account_id
+msgid "Analytic Account"
+msgstr "Cuenta Analítica"
+
+#. module: fertinova_addons
 #: model:ir.model,name:fertinova_addons.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"

@@ -18,7 +18,7 @@ class Purchase_Line_Inherited(models.Model):
 
     ##########################################################
     # MODEL METHODS
-    #########################################################
+    ##########################################################
     @api.depends('product_qty', 'qty_received')
     def _get_qty_to_receive(self):
         '''This method computes the difference between product quantity and quantity received'''

@@ -11,14 +11,15 @@
     'category': 'Uncategorized',
     'version': '12.0.1.0.1',
     # any module necessary for this one to work correctly
-    'depends': ['base','sale','purchase'],
+    'depends': ['base','sale','purchase','stock'],
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'views/sale_inherited.xml',
-        'views/purchase_inherited.xml',
+        'views/sale_inherited_view.xml',
+        'views/purchase_inherited_view.xml',
+        'views/stock_picking_inherited_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
