@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "fertinova_addons",
-    'summary': """Fertinova Addons""",
+    'summary': """Custom addons for enterprise Fertinova""",
     'description': """Módulo que gestiona las distintas personalizaciones que requiere la empresa FERTINOVA en su gestión de Odoo""",
     'author': "Sebastian Ayala Mendez",
     'website': "http://www.fertinova.com",
