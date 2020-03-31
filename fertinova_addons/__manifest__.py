@@ -19,7 +19,7 @@
         'views/templates.xml',
         'views/sale_inherited_view.xml',
         'views/purchase_inherited_view.xml',
-        'views/stock_picking_inherited_view.xml',
+        #'views/stock_picking_inherited_view.xml', TICKET 030 {PENDIENTE}
     ],
     # only loaded in demonstration mode
     'demo': [

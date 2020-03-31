@@ -3,9 +3,6 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
-import logging
-logger = logging.getLogger(__name__)
-
 class StockMove(models.Model):
     _inherit = "stock.move"
 
@@ -28,16 +25,18 @@ class StockMove(models.Model):
            from Tranfers into account journal"""
         
         #Retrieve original dictionary:        
-        res = super()._generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id)
-        #res = super(StockMove, self)._generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id)
-        #res = dict(StockMove._generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id))
-        #res = super(StockMove._generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id))
-        #res = super(StockMove, self)._generate_valuation_lines_data()
+        res = super(StockMove, self)._generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id)
 
         #Update the value of analytic account in credit and debit lines:
-        #analytic_account_id_obtained = res.mapped(self.analytic_account_id.id)
-        logger.info("Info in res: %s", res)
-        print("Info in res: %s", res)
-        res['debit_line_vals'].update({'analytic_account_id': self.analytic_account_id})
-        res['credit_line_vals'].update({'analytic_account_id': self.analytic_account_id})
-        return res, super(StockMove, self)._generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id)
+        
+        #self.debit_line_vals = {'analytic_account_id': self.analytic_account_id}
+        #self.credit_line_vals = {'analytic_account_id': self.analytic_account_id}
+        
+        res = super()._generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id)
+        res['debit_line_vals'].update({'analytic_account_id': self.analytic_account_id.id})
+        res['credit_line_vals'].update({'analytic_account_id': self.analytic_account_id.id})
+        
+        #self._debit_line_vals.write({'analytic_account_id': self.analytic_account_id})
+        #self._credit_line_vals.write({'analytic_account_id': self.analytic_account_id})
+        
+        return res
