@@ -14,12 +14,18 @@
     'depends': ['base','sale','purchase','stock'],
     # always loaded
     'data': [
+        #Security Files:
         #'security/ir.model.access.csv',
+        
+        #Views:
         'views/views.xml',
         'views/templates.xml',
         'views/sale_inherited_view.xml',
         'views/purchase_inherited_view.xml',
-        #'views/stock_picking_inherited_view.xml', TICKET 030 {PENDIENTE}
+        'views/stock_picking_inherited_view.xml', #TICKET 030 {PENDIENTE}
+
+        #Wizards:
+        'wizard/account_move_inherited_view.xml',        
     ],
     # only loaded in demonstration mode
     'demo': [
