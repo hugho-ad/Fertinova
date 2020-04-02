@@ -15,10 +15,10 @@ class Wizard(models.TransientModel):
                                           store=True,
                                           translate=True) 
 
-    analytic_tag_id = fields.Many2one('account.analytic.tag', 
-                                      string='Analytic Tag',
-                                      store=True,
-                                      translate=True)
+    analytic_tag_id = fields.Many2many('account.analytic.tag', 
+                                       string='Analytic Tag',
+                                       store=True,
+                                       translate=True)
 
 
 
@@ -51,8 +51,9 @@ class Wizard(models.TransientModel):
         for line in account_move.line_ids:
             #Validate that accounts belonging to Equity, Assets and Liabilities 
             #must not be considered:
-            if code_aux[0] not in [1, 2 , 3]: 
-                line.write(dict_val)
+            if not code_aux:
+                if code_aux[0] not in [1, 2 , 3]: 
+                    line.write(dict_val)
         
         #Invoke method "post()" in order to post the journal entry:            
         account_move.post()
