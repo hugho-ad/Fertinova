@@ -51,7 +51,7 @@ class Wizard(models.TransientModel):
         for line in account_move.line_ids:
             #Validate that accounts belonging to Equity, Assets and Liabilities 
             #must not be considered:
-            if not code_aux[0] in [1, 2 , 3]: 
+            if code_aux[0] not in [1, 2 , 3]: 
                 line.write(dict_val)
         
         #Invoke method "post()" in order to post the journal entry:            

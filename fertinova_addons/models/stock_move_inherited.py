@@ -49,7 +49,7 @@ class StockMove(models.Model):
             
             #Validate that accounts belonging to Equity, Assets and Liabilities 
             #must not be considered:
-            if not code_aux[0] in [1, 2 , 3]:
+            if code_aux[0] not in [1, 2 , 3]:
                 #Assign and create the new value of analytic_account:
                 new_account = v[2] #get the dictionary from original tuple (0, 0, dict{})
                 new_account['analytic_account_id'] = self.analytic_account_id.id
