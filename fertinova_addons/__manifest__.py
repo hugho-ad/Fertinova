@@ -11,7 +11,7 @@
     'category': 'Uncategorized',
     'version': '12.0.1.0.1',
     # any module necessary for this one to work correctly
-    'depends': ['base','sale','purchase','stock'],
+    'depends': ['purchase_stock', 'sale_management'],
     # always loaded
     'data': [
         #Security Files:

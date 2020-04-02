@@ -7,7 +7,7 @@
             <form string="Assign Analytic Accounts and Tags">                     
                 <section>
                     <h4 class="p-3 mb-2 bg-warning text-dark">Warning:</h4>
-                    <p class="text-danger">This action will replace the existent values of analytic accounts and tags, where the new values will be stored</p>
+                    <p class="text-danger">This action will replace the existent values of analytic accounts and tags, where the new values will be stored. The Equity, Assets and Liabilities Accounts will be not affected</p>
                 </section>    
                 <group>
                     <field name="analytic_account_id"/>

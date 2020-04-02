@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import logging
 from odoo import models, fields, api
 
-_logger = logging.getLogger(__name__) 
 
 class Wizard(models.TransientModel):
     _name = 'analytic.acc.tag.wizard'
@@ -13,45 +11,48 @@ class Wizard(models.TransientModel):
     # MODEL FIELDS
     #########################################################
     analytic_account_id = fields.Many2one('account.analytic.account', 
-                                          string='Analytic Account', 
-                                          index=True, 
-                                          store=True, 
-                                          translate=True
-                                          #required=True
-                                         )
+                                          string='Analytic Account',
+                                          store=True,
+                                          translate=True) 
 
     analytic_tag_id = fields.Many2one('account.analytic.tag', 
-                                      string='Analytic Tag', 
-                                      index=True, 
-                                      store=True, 
-                                      translate=True
-                                      #required=True
-                                     )
+                                      string='Analytic Tag',
+                                      store=True,
+                                      translate=True)
+
+
 
     #########################################################
     # MODEL METHODS
     #########################################################
-    @api.model
-    @api.multi
-    def accept_button(self, args, *kwargs):
-        """This method intends to update analytic accounts and tags from a custom wizard"""
-        #Retrieve "id" of "move_id" for determining which analytic accounts and tags to update
-        move_id = self.env.context.get('active_id')
-        _logger.info('\n\n\nPRINTING THE SPECIFIC MOVE_ID \n%s\n', move_id)
-                
-        #Invoke method "button_cancel()" in order to cancel journal entry
-        _logger.info('\n\n\nINTENDING TO CANCEL JOURNAL ENTRY\n')
-        AccountMove = self.env['account.move'] #AccountMove object
-        AccountMove.button_cancel()
+    def accept_button(self):
+        """This method intends to update analytic accounts and tags from a custommed wizard"""
+        #Retrieve "id" of "move_id" for determining which analytic accounts and tags to update:
+        move_id = self.env.context.get('active_id')   
 
-        #Modify the analytic accounts and tags
+        #Invoke method "button_cancel()" in order to cancel journal entry:
+        account_move = self.env['account.move'].browse(move_id) #AccountMove object
+        account_move.button_cancel()
+
+        #Modify the analytic accounts and tags:
         dict_val = {
-            'analytic_account_id': self.analytic_tag_id.id,
-            'analytic_tag_ids': self.analytic_tag_id.ids
+            'analytic_account_id': self.analytic_account_id.id,
+            'analytic_tag_ids': [(6, 0, self.analytic_tag_id.ids)]
         }
-        _logger.info('\n\n\nINTENDING TO PRINT my_dict: \n%s', dict_val)
-        AccountMove.write(1, move_id, dict_val)
 
-        #Invoke method "action_post()" in order to post journal entry
-        #_logger.info('\n\n\nINTENDING TO POST JOURNAL ENTRY')
-        #AccountMove.action_post()
+        #Retrieval of code from model 'account.account' matching with account_id:            
+        sql_query = """SELECT code FROM account_account WHERE id = %s;"""
+        self.env.cr.execute(sql_query, (move_id,))
+        code = self.env.cr.fetchone()
+        code_aux = code[0]               
+
+        #Iterate to create/update analytic accounts and tags into field 
+        #line_ids One2Many with the new values:
+        for line in account_move.line_ids:
+            #Validate that accounts belonging to Equity, Assets and Liabilities 
+            #must not be considered:
+            if not code_aux[0] in [1, 2 , 3]: 
+                line.write(dict_val)
+        
+        #Invoke method "post()" in order to post the journal entry:            
+        account_move.post()
