@@ -44,14 +44,15 @@ class StockMove(models.Model):
         self.env.cr.execute(sql_query, (account_id,))
         code = self.env.cr.fetchone()          
         code_aux = code[0]           
-                  
-        #Validate that accounts belonging to Equity, Assets and Liabilities 
-        #must not be considered:          
+                           
+        #Assign and create the new value of analytic_account:           
+        new_account = v[2] #get the dictionary from original tuple (0, 0, dict{})
+        
+        #Validate that accounts belonging to Equity, Assets and Liabilities must not be considered: 
         if int(code_aux[0]) not in [1, 2 , 3]:
-          #Assign and create the new value of analytic_account:           
-          new_account = v[2] #get the dictionary from original tuple (0, 0, dict{})
           new_account['analytic_account_id'] = self.analytic_account_id.id
-          element = (0, 0, new_account)
-          result.append(element)          
+        
+        element = (0, 0, new_account)
+        result.append(element)          
             
       return result
