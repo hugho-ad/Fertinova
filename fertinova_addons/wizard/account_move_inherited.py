@@ -11,12 +11,12 @@ class Wizard(models.TransientModel):
     # MODEL FIELDS
     #########################################################
     analytic_account_id = fields.Many2one('account.analytic.account', 
-                                          string='Analytic Account',
+                                          string='Analytic Account',                                          
                                           store=True,
                                           translate=True) 
 
     analytic_tag_id = fields.Many2many('account.analytic.tag', 
-                                       string='Analytic Tag',
+                                       string='Analytic Tag',                                       
                                        store=True,
                                        translate=True)
 
@@ -38,22 +38,21 @@ class Wizard(models.TransientModel):
         dict_val = {
             'analytic_account_id': self.analytic_account_id.id,
             'analytic_tag_ids': [(6, 0, self.analytic_tag_id.ids)]
-        }
-
-        #Retrieval of code from model 'account.account' matching with account_id:            
-        sql_query = """SELECT code FROM account_account WHERE id = %s;"""
-        self.env.cr.execute(sql_query, (move_id,))
-        code = self.env.cr.fetchone()
-        code_aux = code[0]               
+        }             
 
         #Iterate to create/update analytic accounts and tags into field 
         #line_ids One2Many with the new values:
-        for line in account_move.line_ids:
+        for line in account_move.line_ids:                    
+            #Retrieval of account_code from model 'account.account' matching with account_id:            
+            sql_query = """SELECT code FROM account_account WHERE id = %s;"""
+            self.env.cr.execute(sql_query, line.account_id.ids)
+            code = self.env.cr.fetchone()
+            code_aux = code[0]             
+
             #Validate that accounts belonging to Equity, Assets and Liabilities 
-            #must not be considered:
-            if not code_aux:
-                if code_aux[0] not in [1, 2 , 3]: 
-                    line.write(dict_val)
+            #must not be considered:                        
+            if int(code_aux[0]) not in [1, 2 , 3]:                 
+                line.write(dict_val)
         
         #Invoke method "post()" in order to post the journal entry:            
         account_move.post()
