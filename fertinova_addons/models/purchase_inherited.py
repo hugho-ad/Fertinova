@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import logging
+
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
+from odoo.exceptions import UserError
+from odoo.tools.translate import _      
 
-class Purchase_Line_Inherited(models.Model):
+
+class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
     #########################################################
@@ -18,7 +23,7 @@ class Purchase_Line_Inherited(models.Model):
 
     ##########################################################
     # MODEL METHODS
-    #########################################################
+    ##########################################################
     @api.depends('product_qty', 'qty_received')
     def _get_qty_to_receive(self):
         '''This method computes the difference between product quantity and quantity received'''

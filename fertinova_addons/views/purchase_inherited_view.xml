@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
-
+    <!--Purchase Order Form Inherited where new column qty_to_receive was added-->
     <record id="purchase_order_line_inherited" model="ir.ui.view">
         <field name="name">purchase.order.line.inherited</field>
         <field name="model">purchase.order</field>

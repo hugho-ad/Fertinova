@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-05 19:09+0000\n"
-"PO-Revision-Date: 2020-03-05 19:09+0000\n"
+"POT-Creation-Date: 2020-04-02 21:48+0000\n"
+"PO-Revision-Date: 2020-04-02 21:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,76 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
+msgid "Accept"
+msgstr "Aceptar"
+
+#. module: fertinova_addons
+#: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__analytic_account_id
+#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move__analytic_account_id
+msgid "Analytic Account"
+msgstr "Cuenta Analítica"
+
+#. module: fertinova_addons
+#: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__analytic_tag_id
+msgid "Analytic Tag"
+msgstr "Etiqueta analítica"
+
+#. module: fertinova_addons
+#: model:ir.actions.act_window,name:fertinova_addons.launch_analytic_acc_tag_wizard
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
+msgid "Assign Analytic Accounts and Tags"
+msgstr "Asignar Cuentas y Etiquetas Analíticas"
+
+#. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: fertinova_addons
+#: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: fertinova_addons
+#: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: fertinova_addons
+#: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: fertinova_addons
+#: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: fertinova_addons
+#: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: fertinova_addons
+#: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: fertinova_addons
+#: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: fertinova_addons
+#: model:ir.model,name:fertinova_addons.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Movimientos de Producto (Stock Move Line)"
+
+#. module: fertinova_addons
 #: model:ir.model,name:fertinova_addons.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Línea pedido de compra"
+msgstr "Línea de pedido de compra"
 
 #. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_sale_order_line__qty_to_deliver
@@ -35,3 +102,22 @@ msgstr "Cantidad a recibir"
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
 
+#. module: fertinova_addons
+#: model:ir.model,name:fertinova_addons.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
+
+#. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
+msgid "This action will replace the existent values of analytic accounts and tags, where the new values will be stored. The Equity, Assets and Liabilities Accounts will be not affected"
+msgstr "Esta acción reemplazará los valores existentes de las cuentas y etiquetas analíticas, donde los nuevos valores serán lo que se almacenarán. Las cuentas de Capital, Activos y Pasivos no serán afectadas"
+
+#. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
+msgid "Warning:"
+msgstr "Advertencia"
+
+#. module: fertinova_addons
+#: model:ir.model,name:fertinova_addons.model_analytic_acc_tag_wizard
+msgid "Wizard for adding analytic accounts and labels"
+msgstr "Wizard para agregar cuentas y etiquetas analíticas"

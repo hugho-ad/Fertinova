@@ -3,13 +3,13 @@
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 
-class Sale_Line_Inherited(models.Model):
+class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     #########################################################
     # MODEL FIELDS
     #########################################################
-    qty_to_deliver = fields.Float(string='Quantity_to_deliver', 
+    qty_to_deliver = fields.Float(string='Quantity to deliver', 
                                   digits=dp.get_precision('Product Unit of Measure'), 
                                   compute='_get_qty_to_deliver',
                                   store=True,

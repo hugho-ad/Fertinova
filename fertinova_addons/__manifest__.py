@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "fertinova_addons",
-    'summary': """Fertinova Addons""",
+    'summary': """Custom addons for enterprise Fertinova""",
     'description': """Módulo que gestiona las distintas personalizaciones que requiere la empresa FERTINOVA en su gestión de Odoo""",
     'author': "Sebastian Ayala Mendez",
     'website': "http://www.fertinova.com",
@@ -11,14 +11,21 @@
     'category': 'Uncategorized',
     'version': '12.0.1.0.1',
     # any module necessary for this one to work correctly
-    'depends': ['base','sale','purchase'],
+    'depends': ['purchase_stock', 'sale_management'],
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        #Security Files:
+        #'security/ir.model.access.csv',
+        
+        #Views:
         'views/views.xml',
         'views/templates.xml',
-        'views/sale_inherited.xml',
-        'views/purchase_inherited.xml',
+        'views/sale_inherited_view.xml',
+        'views/purchase_inherited_view.xml',
+        'views/stock_picking_inherited_view.xml', #TICKET 030 {PENDIENTE}
+
+        #Wizards:
+        'wizard/account_move_inherited_view.xml',        
     ],
     # only loaded in demonstration mode
     'demo': [
