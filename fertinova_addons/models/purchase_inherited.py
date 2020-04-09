@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import logging
+
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
+from odoo.exceptions import UserError
+from odoo.tools.translate import _      
 
-class Purchase_Line_Inherited(models.Model):
+
+class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
     #########################################################
