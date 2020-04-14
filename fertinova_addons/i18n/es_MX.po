@@ -113,12 +113,6 @@ msgid "Stock Move"
 msgstr "Movimiento de existencias"
 
 #. module: fertinova_addons
-#: code:addons/fertinova_addons/models/purchase_inherited.py:54
-#, python-format
-msgid "The purchase price is superior than sales price"
-msgstr "El precio de compra es superior al precio de venta"
-
-#. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
 msgid "This action will replace the existent values of analytic accounts and tags, where the new values will be stored. The Equity, Assets and Liabilities Accounts will be not affected"
 msgstr "Esta acción reemplazará los valores existentes de las cuentas y etiquetas analíticas, donde los nuevos valores serán lo que se almacenarán. Las cuentas de Capital, Activos y Pasivos no serán afectadas"
