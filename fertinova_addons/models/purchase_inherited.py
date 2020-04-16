@@ -31,19 +31,13 @@ class PurchaseOrder(models.Model):
         #Validate if the currency of purchase order is not Mexican Peso (MXN):
         if currency != 33: #MXN has the id 33 in model res.currency                   
             #If the currency is different to MXN, perform conversion:
-            sql_query = """SELECT rate FROM res_currency_rate WHERE id = %s;"""
-            self.env.cr.execute(sql_query, (currency,))
-            rate_aux = self.env.cr.fetchone()
-            rate = rate_aux[0] #Store rate or conversion factor
+            rate = self.env['res.currency.rate'].search([('id', '=', currency)]).rate
             conversion_factor = 1 / rate             
 
         #Validation in order to avoid purchases when price unit is lesser than sale price:
         for value in purchase_order_lines.ids:
-            #Retrieve "sale price" from table 'product.template':                   
-            sql_query = """SELECT list_price FROM product_template WHERE id = %s;"""
-            self.env.cr.execute(sql_query, (value,))
-            sale_price_aux = self.env.cr.fetchone()
-            sale_price = sale_price_aux[0]        
+            #Retrieve "sale price" from table 'product.template':  
+            sale_price = self.env['product.template'].search([('id', '=', value)]).list_price                         
 
             #Conversion to Mexican Pesos (MXN) of sale price:
             if currency != 33:
@@ -51,7 +45,7 @@ class PurchaseOrder(models.Model):
                 sale_price = float(sale_price) * float(conversion_factor)
                                 
             #Get price_unit of each line from purchase order line:
-            price_unit = self.env['purchase.order.line'].search([('id', '=', value)]).price_unit 
+            price_unit = self.env['purchase.order.line'].search([('id', '=', value)]).price_unit             
             
             #Validate if sale_price is lesser than purchase price unit, then arise error:         
             if sale_price < price_unit:
