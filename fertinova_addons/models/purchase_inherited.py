@@ -27,13 +27,14 @@ class PurchaseOrder(models.Model):
         currency = purchase_order_obj.search([('id', '=', purchase_order_id)]).currency_id.id
 
         #Validate if the currency of purchase order is not Mexican Peso (MXN):
-        if currency != 33: #MXN has the id 33 in model res.currency                   
-            #If the currency is different to MXN, perform conversion:
-            sql_query = """SELECT rate FROM res_currency_rate WHERE id = %s;"""
-            self.env.cr.execute(sql_query, (currency,))
-            rate_aux = self.env.cr.fetchone()
-            rate = rate_aux[0] #Store rate or conversion factor
-            conversion_factor = 1 / rate             
+        if purchase_order_id == None:
+            if currency != 33: #MXN has the id 33 in model res.currency                   
+                #If the currency is different to MXN, perform conversion:
+                sql_query = """SELECT rate FROM res_currency_rate WHERE id = %s;"""
+                self.env.cr.execute(sql_query, (currency,))
+                rate_aux = self.env.cr.fetchone()
+                rate = rate_aux[0] #Store rate or conversion factor
+                conversion_factor = 1 / rate             
 
         #Validation in order to avoid purchases when price unit is lesser than sale price:
         for value in purchase_order_lines.ids:
