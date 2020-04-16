@@ -19,8 +19,7 @@ class PurchaseOrder(models.Model):
         result = super(PurchaseOrder, self).button_confirm()   
 
         #Obtain the current purchase order id:
-        purchase_order_id = self.id 
-        _logger.info('\n\n\n\n id: %s \n\n\n', purchase_order_id)       
+        purchase_order_id = self.id        
         #Object of model 'purchase.order.line':
         purchase_order_obj = self.env['purchase.order'].browse(purchase_order_id)               
         #Retrieve the ids of the relatives lines belonging to the main purchase order:
