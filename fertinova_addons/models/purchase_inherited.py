@@ -48,8 +48,8 @@ class PurchaseOrder(models.Model):
             price_unit = self.env['purchase.order.line'].search([('id', '=', value)]).price_unit             
             
             #Validate if sale_price is lesser than purchase price unit, then arise error:         
-            if float(price_unit) < sale_price:
-                msg = _('The purchase price is superior than sales price %s %s', price_unit, sale_price)
+            if float(price_unit) > sale_price:
+                msg = _('The purchase price $%s is superior than sales price $%s') % (price_unit, sale_price)
                 raise UserError(msg)
     
         return result
