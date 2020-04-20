@@ -36,8 +36,9 @@ class PurchaseOrder(models.Model):
 
         #Validation in order to avoid purchases when price unit is lesser than sale price:
         for value in purchase_order_lines.ids:
-            #Retrieve "sale price" from table 'product.template':  
-            sale_price = self.env['product.template'].search([('id', '=', value)]).list_price                         
+            #Retrieve "sale price" from table 'product.product' considering product_id:  
+            product_id = self.env['purchase.order.line'].search([('id', '=', value)]).product_id.id
+            sale_price = self.env['product.product'].search([('id', '=', product_id)]).lst_price                         
 
             #Conversion to Mexican Pesos (MXN) of sale price:
             if currency != 33:
