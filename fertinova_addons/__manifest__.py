@@ -22,7 +22,8 @@
         'views/templates.xml',
         'views/sale_inherited_view.xml',
         'views/purchase_inherited_view.xml',
-        'views/stock_picking_inherited_view.xml', #TICKET 030 {PENDIENTE}
+        'views/stock_picking_inherited_view.xml',
+        'views/product_product_inherited_view.xml',
 
         #Wizards:
         'wizard/account_move_inherited_view.xml',        

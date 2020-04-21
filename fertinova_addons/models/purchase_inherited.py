@@ -39,19 +39,21 @@ class PurchaseOrder(models.Model):
             #Retrieve "sale price" from table 'product.product' considering product_id:  
             product_id = self.env['purchase.order.line'].search([('id', '=', value)]).product_id.id
             sale_price = self.env['product.product'].search([('id', '=', product_id)]).lst_price                         
+            validation_price_unit = self.env['product.product'].search([('id', '=', product_id)]).validation_price_unit
 
-            #Conversion to Mexican Pesos (MXN) of sale price:
-            if currency != 33:
-                #It is necessary to calculate the new value of currency:
-                sale_price = float(sale_price) * float(conversion_factor)
-                                
-            #Get price_unit of each line from purchase order line:
-            price_unit = self.env['purchase.order.line'].search([('id', '=', value)]).price_unit             
-            
-            #Validate if sale_price is lesser than purchase price unit, then arise error:         
-            if float(price_unit) > sale_price:
-                msg = _('The purchase price $%s is superior than sales price $%s') % (price_unit, sale_price)
-                raise UserError(msg)
+            if validation_price_unit == True:
+                #Conversion to Mexican Pesos (MXN) of sale price:
+                if currency != 33:
+                    #It is necessary to calculate the new value of currency:
+                    sale_price = float(sale_price) * float(conversion_factor)
+                                    
+                #Get price_unit of each line from purchase order line:
+                price_unit = self.env['purchase.order.line'].search([('id', '=', value)]).price_unit             
+                
+                #Validate if sale_price is lesser than purchase price unit, then arise error:         
+                if float(price_unit) > sale_price:
+                    msg = _('The purchase price $%s is superior than sales price $%s') % (price_unit, sale_price)
+                    raise UserError(msg)
     
         return result
 
