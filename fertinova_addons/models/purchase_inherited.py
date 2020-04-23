@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+import logging
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
-from odoo.tools.translate import _      
+from odoo.tools.translate import _    
+_logger = logging.getLogger(__name__)   
 
 
 class PurchaseOrder(models.Model):
@@ -39,9 +41,13 @@ class PurchaseOrder(models.Model):
             #Retrieve "sale price" from table 'product.product' considering product_id:  
             product_id = self.env['purchase.order.line'].search([('id', '=', value)]).product_id.id
             sale_price = self.env['product.product'].search([('id', '=', product_id)]).lst_price                         
+            #Obtain the value True/False from checkboxes:
             validation_price_unit = self.env['product.product'].search([('id', '=', product_id)]).validation_price_unit
+            _logger.info('\n\n\n VALIDATION PRICE UNIT: %s', validation_price_unit)
+            valid_price_unit = self.env['product.template'].search([('id', '=', product_id)]).valid_price_unit
+            _logger.info('\n\n\n VALID PRICE UNIT: %s', valid_price_unit)
 
-            if validation_price_unit == True:
+            if validation_price_unit == True or valid_price_unit == True:
                 #Conversion to Mexican Pesos (MXN) of sale price:
                 if currency != 33:
                     #It is necessary to calculate the new value of currency:
