@@ -2,7 +2,6 @@
 
 from odoo import api, fields, models, _
 
-
 class StockMove(models.Model):
     _inherit = "stock.move"
 
@@ -12,7 +11,12 @@ class StockMove(models.Model):
     analytic_account_id = fields.Many2one('account.analytic.account', 
                                           string='Analytic Account',
                                           store=True,
-                                          translate=True)                           
+                                          translate=True)  
+
+    analytic_tag_id = fields.Many2many('account.analytic.tag', 
+                                       string='Analytic Tag',                                       
+                                       store=True,
+                                       translate=True)                                       
 
 
 
@@ -32,27 +36,25 @@ class StockMove(models.Model):
       res = super(StockMove, self)._prepare_account_move_line(qty, cost, credit_account_id, debit_account_id)
         
       #Creation of the list to be returned:
-      result = []
-        
+      result = []      
       #Iteration of res:
       for v in res:        
         #Obtain "account_id" from the original tuple from its internal dictionaty (0, 0, dict{}):
         account_id = v[2].get('account_id')  
 
-        #Retrieval of "code" from model 'account.account' matching with account_id:            
-        sql_query = """SELECT code FROM account_account WHERE id = %s;"""
-        self.env.cr.execute(sql_query, (account_id,))
-        code = self.env.cr.fetchone()          
-        code_aux = code[0]           
+        #Retrieval of "code" from model 'account.account' matching with account_id:                    
+        code = self.env['account.account'].search([('id', '=', account_id)]).code         
                            
         #Assign and create the new value of analytic_account:           
-        new_account = v[2] #get the dictionary from original tuple (0, 0, dict{})
+        new_vals = v[2] #get the dictionary from original tuple (0, 0, dict{})
         
         #Validate that accounts belonging to Equity, Assets and Liabilities must not be considered: 
-        if int(code_aux[0]) not in [1, 2 , 3]:
-          new_account['analytic_account_id'] = self.analytic_account_id.id
-        
-        element = (0, 0, new_account)
-        result.append(element)          
-            
+        if int(code[0]) not in [1, 2 , 3]:
+          new_vals['analytic_account_id'] = self.analytic_account_id.id                    
+          new_vals['analytic_tag_ids'] = [(6, 0, self.analytic_tag_id.ids)]
+
+        #Append new values into original dictionary:
+        element = (0, 0, new_vals)
+        result.append(element) 
+                            
       return result
