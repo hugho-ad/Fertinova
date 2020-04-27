@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-import logging
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
-from odoo.tools.translate import _    
-_logger = logging.getLogger(__name__)   
+from odoo.tools.translate import _      
 
 
 class PurchaseOrder(models.Model):
