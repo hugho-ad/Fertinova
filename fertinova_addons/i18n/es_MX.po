@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-23 16:59+0000\n"
-"PO-Revision-Date: 2020-04-23 16:59+0000\n"
+"POT-Creation-Date: 2020-04-28 19:00+0000\n"
+"PO-Revision-Date: 2020-04-28 19:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: fertinova_addons
+#: code:addons/fertinova_addons/models/purchase_inherited.py:34
+#, python-format
+msgid "\n"
+"The purchase price $%s is superior than sales price $%s\n"
+""
+msgstr "\n"
+"El precio de compra $%s es superior que el precio de venta $%s\n"
+""
 
 #. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
@@ -110,11 +120,6 @@ msgid "Purchase Price Unit must not exceed to Sale Price"
 msgstr "Precio Unitario de Compra no debe exceder al Precio de Venta"
 
 #. module: fertinova_addons
-#: model:ir.model.fields,field_description:fertinova_addons.field_product_product__validation_price_unit
-msgid "Purchase Price Unit must not exceed to Sales Price"
-msgstr "Precio Unitario de Compra no debe exceder al Precio de Venta"
-
-#. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_sale_order_line__qty_to_deliver
 msgid "Quantity to deliver"
 msgstr "Cantidad a entregar"
@@ -133,12 +138,6 @@ msgstr "Línea de pedido de venta"
 #: model:ir.model,name:fertinova_addons.model_stock_move
 msgid "Stock Move"
 msgstr "Movimiento de existencias"
-
-#. module: fertinova_addons
-#: code:addons/fertinova_addons/models/purchase_inherited.py:61
-#, python-format
-msgid "The purchase price $%s is superior than sales price $%s"
-msgstr "El precio de compra $%s es superior que el precio de venta $%s"
 
 #. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
