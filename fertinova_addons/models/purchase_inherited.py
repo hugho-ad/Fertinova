@@ -17,49 +17,26 @@ class PurchaseOrder(models.Model):
            sale prices of those products and avoiding to acquire when this cost
            is lesser than company wants to purchase from providers"""
         result = super(PurchaseOrder, self).button_confirm()   
-
-        #Obtain the current purchase order id:
-        purchase_order_id = self.id        
-        #Object of model 'purchase.order.line':
-        purchase_order_obj = self.env['purchase.order'].browse(purchase_order_id)               
-        #Retrieve the ids of the relatives lines belonging to the main purchase order:
-        purchase_order_lines = self.env['purchase.order.line'].search([('order_id', '=', purchase_order_id)])            
-        
-        #Obtain the currency of purchase order:
-        currency = purchase_order_obj.search([('id', '=', purchase_order_id)]).currency_id.id
-
+                   
         #Validate if the currency of purchase order is not Mexican Peso (MXN):
-        if currency != 33: #MXN has the id 33 in model res.currency                   
+        mxn = self.env.ref('base.MXN')
+        if self.currency_id != mxn.id:                  
             #If the currency is different to MXN, perform conversion:
-            rate = self.env['res.currency.rate'].search([('id', '=', currency)]).rate
-            conversion_factor = 1 / rate             
+            rate = mxn._get_conversion_rate(self.env.user.company_id.currency_id, self.currency_id, self.company_id, self.date_order)           
 
-        #Validation in order to avoid purchases when price unit is lesser than sale price:
-        for value in purchase_order_lines.ids:
-            #Retrieve "sale price" from table 'product.product' considering product_id:  
-            product_id = self.env['purchase.order.line'].search([('id', '=', value)]).product_id.id
-            sale_price = self.env['product.product'].search([('id', '=', product_id)]).lst_price                         
-            #Obtain the value True/False from checkboxes:
-            validation_price_unit = self.env['product.product'].search([('id', '=', product_id)]).validation_price_unit
-            _logger.info('\n\n\n VALIDATION PRICE UNIT: %s', validation_price_unit)
-            valid_price_unit = self.env['product.template'].search([('id', '=', product_id)]).valid_price_unit
-            _logger.info('\n\n\n VALID PRICE UNIT: %s', valid_price_unit)
-
-            if validation_price_unit == True or valid_price_unit == True:
-                #Conversion to Mexican Pesos (MXN) of sale price:
-                if currency != 33:
-                    #It is necessary to calculate the new value of currency:
-                    sale_price = float(sale_price) * float(conversion_factor)
-                                    
-                #Get price_unit of each line from purchase order line:
-                price_unit = self.env['purchase.order.line'].search([('id', '=', value)]).price_unit             
-                
-                #Validate if sale_price is lesser than purchase price unit, then arise error:         
-                if float(price_unit) > sale_price:
-                    msg = _('The purchase price $%s is superior than sales price $%s') % (price_unit, sale_price)
-                    raise UserError(msg)
-    
-        return result
+        msg = ""
+        for value in self.order_line.filtered("product_id.product_tmpl_id.valid_price_unit"):
+            #Auxiliar variables:
+            price_unit = value.price_unit * rate
+            sale_price = value.product_id.list_price
+            #Validation in order to avoid purchases when price unit is lesser than sale price:
+            if sale_price <= price_unit:
+                msg += _('\nThe purchase price $%s is superior than sales price $%s\n') % (price_unit, sale_price)
+        
+        if not msg:
+            return result
+        
+        raise UserError(msg)
 
 
 
