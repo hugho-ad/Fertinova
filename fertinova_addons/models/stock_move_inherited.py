@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 
+import logging
+
 from odoo import api, fields, models, _
+from odoo.addons import decimal_precision as dp
+
+_logger = logging.getLogger(__name__)
+
 
 class StockMove(models.Model):
     _inherit = "stock.move"
@@ -58,3 +64,82 @@ class StockMove(models.Model):
         result.append(element) 
                             
       return result
+
+
+
+class StockMoveLine(models.Model):
+    _inherit = "stock.move.line"
+
+    #########################################################
+    # MODEL FIELDS
+    #########################################################
+    operative_qty = fields.Float(string='Operative Quantity', 
+                                 digits=dp.get_precision('Product Unit of Measure'),
+                                 compute='_get_operative_qty')      
+
+    inputs = fields.Float(string='Inputs', 
+                          digits=dp.get_precision('Product Unit of Measure')) 
+
+    outputs = fields.Float(string='Outputs', 
+                           digits=dp.get_precision('Product Unit of Measure'))     
+
+    transfers = fields.Float(string='Transfers', 
+                             digits=dp.get_precision('Product Unit of Measure')) 
+
+    accumulated_qty = fields.Float(string='Accumulated Quantity', 
+                                   digits=dp.get_precision('Product Unit of Measure'))                               
+
+    price_unit = fields.Float(string='Price Unit', 
+                              digits=dp.get_precision('Product Unit of Measure'), 
+                              compute='_get_price_unit') 
+
+    accumulated_ammount = fields.Float(string='Accumulated Ammount', 
+                                       digits=dp.get_precision('Product Unit of Measure'))   
+
+    calculated_average_cost = fields.Float(string='Calculated Average Cost', 
+                                           digits=dp.get_precision('Product Unit of Measure'))   
+
+    average_cost_difference = fields.Float(string='Average Cost Difference', 
+                                           digits=dp.get_precision('Product Unit of Measure'))                                             
+                                           
+    #########################################################
+    # MODEL METHODS
+    #########################################################
+    @api.model
+    def _get_operative_qty(self):
+      rows = self.env['stock.move.line'].search([])
+      _logger.info('\n\n\n\n PRINTING ROWS: %s\n\n\n\n', rows)
+
+      for val in self:
+            _logger.info('\n\n\n\n PRINTING vals product: %s\n\n\n\n', vals.product_id.id)
+            
+      #rows_grouped_by_product = self.read_group(
+      #  [([])],#Domain
+      #  ['product_id'],#Fiels to access
+      #  ['product_id.id']#group_by 
+      #)
+      #_logger.info('\n\n\n\n rows_grouped_by_product: %s\n\n\n\n', rows_grouped_by_product)
+
+    def _get_inputs(self):
+      pass
+
+    def _get_outputs(self):
+      pass
+    
+    def _get_transfers(self):
+      pass
+
+    def _get_accumulated_qty(self):
+      pass
+
+    def _get_price_unit(self):
+      pass
+
+    def _get_accumulated_ammount(self):
+      pass
+
+    def _get_calculated_average_cost(self):
+      pass  
+
+    def _get_average_cost_difference(self):
+      pass                                  
