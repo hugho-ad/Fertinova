@@ -227,6 +227,7 @@ class StockMoveLine(models.Model):
 
       for record in self:
         product_id_aux = record.product_id.id #Obtain product id 
+
         if product_id != product_id_aux:
           #Validation for first item belonging to a product given:
           record.accumulated_qty = auxiliar_ammount
