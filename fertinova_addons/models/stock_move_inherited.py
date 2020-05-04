@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 
+import logging
+import math
 from odoo import api, fields, models, _
+from odoo.addons import decimal_precision as dp
+
+_logger = logging.getLogger(__name__)
+
 
 class StockMove(models.Model):
     _inherit = "stock.move"
@@ -58,3 +64,202 @@ class StockMove(models.Model):
         result.append(element) 
                             
       return result
+
+
+
+class StockMoveLine(models.Model):
+    _inherit = "stock.move.line"
+
+    #########################################################
+    # MODEL FIELDS
+    #########################################################
+    operative_qty = fields.Float(string='Operative Quantity', 
+                                 digits=dp.get_precision('Product Unit of Measure'),
+                                 group_operator=True,
+                                 compute='_get_operative_qty')      
+
+    inputs = fields.Float(string='Inputs', 
+                          digits=dp.get_precision('Product Unit of Measure'),
+                          group_operator=True,
+                          compute='_get_inputs') 
+
+    outputs = fields.Float(string='Outputs', 
+                           digits=dp.get_precision('Product Unit of Measure'),
+                           group_operator=True,
+                           compute='_get_outputs')     
+
+    transfers = fields.Float(string='Transfers', 
+                             digits=dp.get_precision('Product Unit of Measure'),
+                             group_operator=True,
+                             compute='_get_transfers') 
+
+    accumulated_qty = fields.Float(string='Accumulated Quantity', 
+                                   digits=dp.get_precision('Product Unit of Measure'),
+                                   group_operator=True,
+                                   compute='_get_accumulated_qty')                               
+
+    price_unit = fields.Float(string='Price Unit', 
+                              digits=dp.get_precision('Product Unit of Measure'), 
+                              group_operator=True,
+                              compute='_get_price_unit') 
+
+    accumulated_ammount = fields.Float(string='Accumulated Ammount', 
+                                       digits=dp.get_precision('Product Unit of Measure'),
+                                       group_operator=True,
+                                       compute='_get_accumulated_ammount')   
+
+    calculated_average_cost = fields.Float(string='Calculated Average Cost', 
+                                           digits=dp.get_precision('Product Unit of Measure'),
+                                           group_operator=True,
+                                           compute='_get_calculated_average_cost')   
+
+    average_cost_difference = fields.Float(string='Average Cost Difference', 
+                                           digits=dp.get_precision('Product Unit of Measure'),
+                                           group_operator=True,
+                                           compute='_get_average_cost_difference')                                             
+
+
+
+    #########################################################
+    # MODEL METHODS
+    #########################################################
+    @api.depends('qty_done', 'x_studio_valor')
+    def _get_operative_qty(self):
+        '''This method computes the value of operative quantity'''
+        for record in self:
+          if not record.qty_done and not record.x_studio_valor:
+            record.operative_qty = 0.0
+          else:
+            #Get the sign from field "value": 
+            sign_function = lambda param: math.copysign(1, param)
+            sign = sign_function(record.x_studio_valor)
+            #Assign the value into new field "operative_qty"
+            record.operative_qty = record.qty_done * sign                        
+            
+
+    @api.depends('qty_done', 'x_studio_valor')
+    def _get_inputs(self):
+      '''This method computes the value of inputs'''
+      for record in self:
+        if not record.qty_done and not record.x_studio_valor:
+          record.inputs = 0.0
+        else:
+          #If value is equal or lesser than 0 "inputs" must be 0.0    
+          if record.x_studio_valor > 0:
+            record.inputs = record.qty_done  
+          else:
+            record.inputs = 0.0
+
+
+    @api.depends('qty_done', 'x_studio_valor')
+    def _get_outputs(self):
+      '''This method computes the value of outputs'''
+      for record in self:
+        if not record.qty_done and not record.x_studio_valor:
+          record.outputs = 0.0
+        else:
+          #If value is equal or superior than 0 "inputs" must be 0.0    
+          if record.x_studio_valor >= 0:
+            record.outputs = 0.0  
+          else:
+            record.outputs = record.qty_done
+    
+
+    @api.depends('qty_done', 'x_studio_valor')
+    def _get_transfers(self):
+      '''This method computes the value of transfers'''
+      for record in self:
+        if not record.qty_done and not record.x_studio_valor:
+          record.outputs = 0.0
+        else:
+          #If value is equal to 0 "tranfers" must be qty_done    
+          if record.x_studio_valor == 0:
+            record.outputs = record.qty_done
+          else:
+            record.outputs = 0.0
+
+
+    @api.depends('product_id', 'operative_qty')
+    def _get_accumulated_qty(self):
+      '''This method computes the value of accumulated_qty'''
+      auxiliar_ammount = 0.0
+      product_id = None
+      for record in self:
+        product_id_aux = record.id
+        if product_id != product_id_aux:
+          record.accumulated_qty = auxiliar_ammount
+        else:  
+          auxiliar_ammount += record.operative_qty
+          record.accumulated_qty = auxiliar_ammount   
+
+        product_id = product_id_aux   
+      #self.operative_qty = operative_qty_aux            
+            
+      #rows_grouped_by_product = self.read_group(
+      #  [([])],#Domain
+      #  ['product_id'],#Fiels to access
+      #  ['product_id.id']#group_by 
+      #)
+      #_logger.info('\n\n\n\n rows_grouped_by_product: %s\n\n\n\n', rows_grouped_by_product)            
+
+    
+    @api.depends('qty_done', 'x_studio_valor')
+    def _get_price_unit(self):
+      '''This method computes the value of price_unit'''
+      for record in self:
+        if not record.qty_done and not record.x_studio_valor:
+          record.outputs = 0.0
+        else:
+          #Avoiding zero division:  
+          if record.qty_done == 0:
+            record.price_unit = 0.0
+          else:
+            #price unit = value / quantity done                
+            record.price_unit = record.x_studio_valor / record.qty_done      
+      
+
+    @api.depends('x_studio_valor')
+    def _get_accumulated_ammount(self):
+      '''This method computes the value of accumulated_ammount'''
+      auxiliar_ammount = 0.0
+      product_id = None
+      for record in self:
+        product_id_aux = record.id
+        if product_id != product_id_aux:
+          record.accumulated_ammount = auxiliar_ammount
+        else:  
+          auxiliar_ammount += record.x_studio_valor
+          record.accumulated_ammount = auxiliar_ammount   
+
+        product_id = product_id_aux   
+
+
+    @api.depends('accumulated_qty', 'accumulated_ammount')
+    def _get_calculated_average_cost(self):
+      '''This method computes the value of calculated_average_cost'''
+      for record in self:
+        if not record.qty_done and not record.x_studio_valor:
+          record.calculated_average_cost = 0.0
+        else:
+          #Avoiding zero division:   
+          if record.accumulated_qty == 0:
+            record.calculated_average_cost = 0.0
+          else:
+            #calculated average cost = accumulated ammount / accumulated quantity     
+            record.calculated_average_cost = record.accumulated_ammount / record.accumulated_qty 
+
+
+    @api.depends('calculated_average_cost')    
+    def _get_average_cost_difference(self):
+      '''This method computes the value of average_cost_difference'''
+      auxiliar_ammount = 0.0
+      product_id = None
+      for record in self:
+        product_id_aux = record.id
+        if product_id != product_id_aux:
+          record.accumulated_qty = auxiliar_ammount
+        else:  
+          auxiliar_ammount -= record.average_cost_difference
+          record.average_cost_difference = auxiliar_ammount   
+
+        product_id = product_id_aux                                   
