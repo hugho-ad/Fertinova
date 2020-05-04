@@ -169,14 +169,11 @@ class StockMoveLine(models.Model):
     def _get_transfers(self):
       '''This method computes the value of transfers'''
       for record in self:
-        if not record.qty_done and not record.x_studio_valor:
-          record.outputs = 0.0
+        #If value is equal to 0 "tranfers" must be qty_done    
+        if record.x_studio_valor == 0.0:
+          record.tranfers = record.qty_done
         else:
-          #If value is equal to 0 "tranfers" must be qty_done    
-          if record.x_studio_valor == 0:
-            record.outputs = record.qty_done
-          else:
-            record.outputs = 0.0
+          record.tranfers = 0.0
 
 
     @api.depends('product_id', 'operative_qty')
@@ -184,38 +181,27 @@ class StockMoveLine(models.Model):
       '''This method computes the value of accumulated_qty'''
       auxiliar_ammount = 0.0
       product_id = None
+
       for record in self:
-        product_id_aux = record.id
+        product_id_aux = record.product_id.id
         if product_id != product_id_aux:
           record.accumulated_qty = auxiliar_ammount
+          product_id = product_id_aux 
         else:  
-          auxiliar_ammount += record.operative_qty
-          record.accumulated_qty = auxiliar_ammount   
-
-        product_id = product_id_aux   
-      #self.operative_qty = operative_qty_aux            
-            
-      #rows_grouped_by_product = self.read_group(
-      #  [([])],#Domain
-      #  ['product_id'],#Fiels to access
-      #  ['product_id.id']#group_by 
-      #)
-      #_logger.info('\n\n\n\n rows_grouped_by_product: %s\n\n\n\n', rows_grouped_by_product)            
+          auxiliar_ammount += record.operative_qty          
+          record.accumulated_qty = auxiliar_ammount              
 
     
     @api.depends('qty_done', 'x_studio_valor')
     def _get_price_unit(self):
       '''This method computes the value of price_unit'''
       for record in self:
-        if not record.qty_done and not record.x_studio_valor:
-          record.outputs = 0.0
+        #Avoiding zero division:  
+        if record.qty_done == 0.0:
+          record.price_unit = 0.0
         else:
-          #Avoiding zero division:  
-          if record.qty_done == 0:
-            record.price_unit = 0.0
-          else:
-            #price unit = value / quantity done                
-            record.price_unit = record.x_studio_valor / record.qty_done      
+          #price unit = value / quantity done                
+          record.price_unit = record.x_studio_valor / record.qty_done      
       
 
     @api.depends('x_studio_valor')
@@ -223,30 +209,27 @@ class StockMoveLine(models.Model):
       '''This method computes the value of accumulated_ammount'''
       auxiliar_ammount = 0.0
       product_id = None
+      
       for record in self:
-        product_id_aux = record.id
+        product_id_aux = record.product_id.id
         if product_id != product_id_aux:
           record.accumulated_ammount = auxiliar_ammount
+          product_id = product_id_aux
         else:  
           auxiliar_ammount += record.x_studio_valor
-          record.accumulated_ammount = auxiliar_ammount   
-
-        product_id = product_id_aux   
+          record.accumulated_ammount = auxiliar_ammount              
 
 
     @api.depends('accumulated_qty', 'accumulated_ammount')
     def _get_calculated_average_cost(self):
       '''This method computes the value of calculated_average_cost'''
       for record in self:
-        if not record.qty_done and not record.x_studio_valor:
+        #Avoiding zero division:   
+        if record.accumulated_qty == 0.0:
           record.calculated_average_cost = 0.0
         else:
-          #Avoiding zero division:   
-          if record.accumulated_qty == 0:
-            record.calculated_average_cost = 0.0
-          else:
-            #calculated average cost = accumulated ammount / accumulated quantity     
-            record.calculated_average_cost = record.accumulated_ammount / record.accumulated_qty 
+          #calculated average cost = accumulated ammount / accumulated quantity     
+          record.calculated_average_cost = record.accumulated_ammount / record.accumulated_qty 
 
 
     @api.depends('calculated_average_cost')    
@@ -254,12 +237,12 @@ class StockMoveLine(models.Model):
       '''This method computes the value of average_cost_difference'''
       auxiliar_ammount = 0.0
       product_id = None
+
       for record in self:
-        product_id_aux = record.id
+        product_id_aux = record.product_id.id
         if product_id != product_id_aux:
           record.accumulated_qty = auxiliar_ammount
+          product_id = product_id_aux
         else:  
           auxiliar_ammount -= record.average_cost_difference
-          record.average_cost_difference = auxiliar_ammount   
-
-        product_id = product_id_aux                                   
+          record.average_cost_difference = auxiliar_ammount                                             
