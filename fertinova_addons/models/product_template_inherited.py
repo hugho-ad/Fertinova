@@ -9,9 +9,3 @@ class ProductTemplate(models.Model):
     # MODEL FIELDS
     #########################################################
     valid_price_unit = fields.Boolean(string='Purchase Price Unit must not exceed to Sale Price')
-
-
-
-    #########################################################
-    # METHOD FIELDS
-    #########################################################
