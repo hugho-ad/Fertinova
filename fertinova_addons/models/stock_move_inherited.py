@@ -152,14 +152,11 @@ class StockMoveLine(models.Model):
     def _get_outputs(self):
       '''This method computes the value of outputs'''
       for record in self:
-        if not record.qty_done and not record.x_studio_valor:
-          record.outputs = 0.0
+        #If value is equal or superior than 0 "inputs" must be 0.0    
+        if record.x_studio_valor >= 0:
+          record.outputs = 0.0  
         else:
-          #If value is equal or superior than 0 "inputs" must be 0.0    
-          if record.x_studio_valor >= 0:
-            record.outputs = 0.0  
-          else:
-            record.outputs = record.qty_done
+          record.outputs = record.qty_done
     
 
     @api.depends('qty_done', 'x_studio_valor')
