@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>    
+    <!--  TICKET 102  -  DEVELOPED BY SEBASTIAN MENDEZ  -  START   -->
+    <!--Stock Move Tree View Inherited where new columns were added-->
+    <record id="stock_move_line_tree_inherited" model="ir.ui.view">
+        <field name="name">stock.move.line.tree.inherit</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="qty_done" position="after">
+                <field name="operative_qty" />
+                <field name="inputs" />
+                <field name="outputs" />
+                <field name="transfers" />
+                <field name="accumulated_qty" />                   
+                <field name="price_unit" />   
+            </field>
+        </field>
+    </record> 
+
+    <!--Stock Move Tree View Inherited where new columns were added-->
+    <record id="stock_move_line_list_inherited" model="ir.ui.view">
+        <field name="name">stock.move.line.list.inherit</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="accumulated_ammount" />
+                <field name="calculated_average_cost" />
+                <field name="average_cost_difference" />   
+            </field>
+        </field>
+    </record>     
+    <!--  TICKET 102  -  DEVELOPED BY SEBASTIAN MENDEZ  -  END   -->
+  </data>
+</odoo>  
