@@ -28,7 +28,7 @@
             <field name="state" position="before">
                 <field name="accumulated_ammount" />
                 <field name="calculated_average_cost" />
-                <field name="average_cost_difference" />   
+                <field name="average_cost_difference" invisible="1" />   
             </field>
         </field>
     </record>     
