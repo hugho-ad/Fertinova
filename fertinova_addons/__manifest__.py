@@ -22,8 +22,6 @@
         'views/purchase_inherited_view.xml',
         'views/sale_inherited_view.xml',        
         'views/stock_picking_inherited_view.xml',
-        'views/stock_move_inherited_view.xml',         
-        'views/templates.xml',              
 
         #Wizards:
         'wizard/account_move_inherited_view.xml',        

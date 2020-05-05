@@ -2,7 +2,8 @@
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
-from odoo.tools.translate import _      
+from odoo.tools.translate import _    
+
 
 #//////////////////////////////////////////////////////////////////////////////////////////////#
 #   TICKET 028    DEVELOPED BY SEBASTIAN MENDEZ    --     START
