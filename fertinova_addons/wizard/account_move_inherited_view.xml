@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!--  TICKET 103  -  DEVELOPED BY SEBASTIAN MENDEZ  -  START   -->        
     <record id="wizard_acc_tag_form_view" model="ir.ui.view">
         <field name="name">wizard.anal.acc.tag.form</field>
         <field name="model">analytic.acc.tag.wizard</field>
@@ -29,4 +30,5 @@
                 view_mode="form"
                 target="new"
                 key2="client_action_multi"/>
+    <!--  TICKET 103  -  DEVELOPED BY SEBASTIAN MENDEZ  -  END   -->                    
 </odoo>

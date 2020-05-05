@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+#   TICKET 028    DEVELOPED BY SEBASTIAN MENDEZ    --     START
+#//////////////////////////////////////////////////////////////////////////////////////////////#
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
@@ -13,8 +15,7 @@ class SaleOrderLine(models.Model):
                                   digits=dp.get_precision('Product Unit of Measure'), 
                                   compute='_get_qty_to_deliver',
                                   store=True,
-                                  translate=True
-                                 )
+                                  translate=True)
 
     #########################################################
     # MODEL METHODS
@@ -27,3 +28,6 @@ class SaleOrderLine(models.Model):
                 rec.qty_to_deliver= 0.0
             else:
                 rec.qty_to_deliver = rec.product_uom_qty - rec.qty_delivered
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+#   TICKET 028    DEVELOPED BY SEBASTIAN MENDEZ    --     START
+#//////////////////////////////////////////////////////////////////////////////////////////////#                

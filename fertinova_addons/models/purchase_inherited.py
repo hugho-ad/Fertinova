@@ -4,8 +4,9 @@ from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
 from odoo.tools.translate import _      
 
-
-
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+#   TICKET 028    DEVELOPED BY SEBASTIAN MENDEZ    --     START
+#//////////////////////////////////////////////////////////////////////////////////////////////#
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
@@ -29,3 +30,6 @@ class PurchaseOrderLine(models.Model):
                 rec.qty_to_receive = 0.0
             else:
                 rec.qty_to_receive = rec.product_qty - rec.qty_received
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+#   TICKET 028    DEVELOPED BY SEBASTIAN MENDEZ    --     END
+#//////////////////////////////////////////////////////////////////////////////////////////////#               

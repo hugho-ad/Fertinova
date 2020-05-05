@@ -4,7 +4,9 @@ from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
 
 
-
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+#   TICKET 108    DEVELOPED BY SEBASTIAN MENDEZ    --     START
+#//////////////////////////////////////////////////////////////////////////////////////////////#
 class StockMove(models.Model):
     _inherit = "stock.move"
 
@@ -60,10 +62,15 @@ class StockMove(models.Model):
         result.append(element) 
                             
       return result
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+#   TICKET 108    DEVELOPED BY SEBASTIAN MENDEZ    --     END
+#//////////////////////////////////////////////////////////////////////////////////////////////#      
 
 
 
-
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+#   TICKET 102 KARDEX    DEVELOPED BY SEBASTIAN MENDEZ    --     START
+#//////////////////////////////////////////////////////////////////////////////////////////////#
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
 
@@ -120,8 +127,11 @@ class StockMoveLine(models.Model):
             #Get the sign from field "value": 
             sign_function = lambda param: math.copysign(1, param)
             sign = sign_function(record.x_studio_valor)
-            #Assign the value into new field "operative_qty"
+            #Assign the value into new field "operative_qty":
             record.operative_qty = record.qty_done * sign                        
+            #However since I obtain always 1, then when occurs the case 1 * 1 must be equal to 0.0:
+            if record.operative_qty == 1:
+                  record.operative_qty = 0.0
             
 
     @api.depends('qty_done', 'x_studio_valor')
@@ -157,7 +167,7 @@ class StockMoveLine(models.Model):
       '''This method computes the value of transfers'''
       for record in self:
         #If value is equal to 0 "tranfers" must be qty_done    
-        if not record.x_studio_valor:
+        if record.x_studio_valor == 0:
           record.tranfers = record.qty_done
         else:
           record.tranfers = 0.0
@@ -167,16 +177,19 @@ class StockMoveLine(models.Model):
     def _get_accumulated_qty(self):
       '''This method computes the value of accumulated_qty'''
       product_id = None #product id necessary for comparing when it is different
+      accumulated_qty_aux = 0.0
 
       for record in self:
         product_id_aux = record.product_id.id #Obtain product id 
         if product_id != product_id_aux:
           #Validation for first item belonging to a product given:    
           record.accumulated_qty = record.operative_qty 
+          accumulated_qty_aux = record.accumulated_qty
           product_id = product_id_aux #make product ids equal
         else:  
           #When product ids are equal just add values to accumulated quantity:
-          record.accumulated_qty += record.accumulated_qty                       
+          accumulated_qty_aux += record.operative_qty
+          record.accumulated_qty = accumulated_qty_aux                       
 
     
     @api.depends('qty_done', 'x_studio_valor')
@@ -195,16 +208,19 @@ class StockMoveLine(models.Model):
     def _get_accumulated_ammount(self):
       '''This method computes the value of accumulated_ammount'''
       product_id = None #product id necessary for comparing when it is different
+      accumulated_ammount_aux = 0.0
       
       for record in self:
         product_id_aux = record.product_id.id #Obtain product id 
         if product_id != product_id_aux:
           #Validation for first item belonging to a product given: 
           record.accumulated_ammount = record.x_studio_valor 
+          accumulated_ammount_aux = record.accumulated_ammount
           product_id = product_id_aux #make product ids equal
         else:  
           #When product ids are equal just add values to accumulated ammount:
-          record.accumulated_ammount += record.accumulated_ammount                      
+          accumulated_ammount_aux += record.x_studio_valor
+          record.accumulated_ammount = accumulated_ammount_aux
 
 
     @api.depends('accumulated_qty', 'accumulated_ammount')
@@ -212,7 +228,7 @@ class StockMoveLine(models.Model):
       '''This method computes the value of calculated_average_cost'''
       for record in self:
         #Avoiding zero division:   
-        if not record.accumulated_qty:
+        if record.accumulated_qty == 0:
           record.calculated_average_cost = 0.0
         else:
           #calculated average cost = accumulated ammount / accumulated quantity     
@@ -221,9 +237,9 @@ class StockMoveLine(models.Model):
 
     @api.depends('calculated_average_cost')    
     def _get_average_cost_difference(self):
-      '''This method computes the value of average_cost_difference'''
-      auxiliar_ammount = 0.0
+      '''This method computes the value of average_cost_difference'''      
       product_id = None #product id necessary for comparing when it is different
+      auxiliar_ammount = 0.0
 
       for record in self:
         product_id_aux = record.product_id.id #Obtain product id 
@@ -234,4 +250,7 @@ class StockMoveLine(models.Model):
         else:  
           #When product ids are equal just add values to accumulated ammount:
           auxiliar_ammount -= record.average_cost_difference
-          record.average_cost_difference = auxiliar_ammount                                                    
+          record.average_cost_difference = auxiliar_ammount 
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+#   TICKET 102 KARDEX    DEVELOPED BY SEBASTIAN MENDEZ    --     END
+#//////////////////////////////////////////////////////////////////////////////////////////////#                                                                      
