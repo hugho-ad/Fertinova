@@ -243,6 +243,7 @@ class StockMoveLine(models.Model):
 
       for record in self:
         product_id_aux = record.product_id.id #Obtain product id 
+
         if product_id != product_id_aux:
           #Validation for first item belonging to a product given:
           record.accumulated_qty = auxiliar_ammount
@@ -250,7 +251,4 @@ class StockMoveLine(models.Model):
         else:  
           #When product ids are equal just add values to accumulated ammount:
           auxiliar_ammount -= record.average_cost_difference
-          record.average_cost_difference = auxiliar_ammount 
-#//////////////////////////////////////////////////////////////////////////////////////////////#
-#   TICKET 102 KARDEX    DEVELOPED BY SEBASTIAN MENDEZ    --     END
-#//////////////////////////////////////////////////////////////////////////////////////////////#                                                                      
+          record.average_cost_difference = auxiliar_ammount                                                    
