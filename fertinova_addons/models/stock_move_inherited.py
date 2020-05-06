@@ -164,7 +164,7 @@ class StockMoveLine(models.Model):
       '''This method computes the value of transfers'''
       for record in self:
         #If value is equal to 0 "tranfers" must be qty_done    
-        if not record.x_studio_valor:
+        if record.x_studio_valor == 0.0 or record.x_studio_valor == 0 or not record.x_studio_valor or record.x_studio_valor == None:
           record.tranfers = record.qty_done
         else:
           record.tranfers = 0.0
