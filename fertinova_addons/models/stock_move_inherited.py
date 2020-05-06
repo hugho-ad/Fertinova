@@ -4,6 +4,7 @@ from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
 
 
+
 #//////////////////////////////////////////////////////////////////////////////////////////////#
 #   TICKET 108    DEVELOPED BY SEBASTIAN MENDEZ    --     START
 #//////////////////////////////////////////////////////////////////////////////////////////////#
@@ -163,11 +164,11 @@ class StockMoveLine(models.Model):
     def _get_transfers(self):
       '''This method computes the value of transfers'''
       for record in self:
-        #If value is equal to 0 "tranfers" must be qty_done    
-        if not record.x_studio_valor:
-          record.tranfers = record.qty_done
+        #If value is equal to 0 "tranfers" must be qty_done  
+        if record.x_studio_valor == 0.0000 or record.x_studio_valor == 0 or not record.x_studio_valor or record.x_studio_valor == None:            
+          record.transfers = record.qty_done
         else:
-          record.tranfers = 0.0
+          record.transfers = 0.0
 
 
     @api.depends('product_id', 'operative_qty')
@@ -225,7 +226,7 @@ class StockMoveLine(models.Model):
       '''This method computes the value of calculated_average_cost'''
       for record in self:
         #Avoiding zero division:   
-        if record.accumulated_qty == 0:
+        if record.accumulated_qty == 0.0000 or record.accumulated_qty == 0 or not record.accumulated_qty or record.accumulated_qty == None:
           record.calculated_average_cost = 0.0
         else:
           #calculated average cost = accumulated ammount / accumulated quantity     
