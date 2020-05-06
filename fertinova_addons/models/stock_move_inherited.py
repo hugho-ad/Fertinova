@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 import math
-import logging
 from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
-
-_logger = logging.getLogger(__name__) 
 
 
 #//////////////////////////////////////////////////////////////////////////////////////////////#
