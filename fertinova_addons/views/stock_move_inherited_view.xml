@@ -20,6 +20,7 @@
     </record> 
 
     <!--Stock Move Tree View Inherited where new columns were added-->
+    <!--
     <record id="stock_move_line_list_inherited" model="ir.ui.view">
         <field name="name">stock.move.line.list.inherit</field>
         <field name="model">stock.move.line</field>
@@ -32,6 +33,7 @@
             </field>
         </field>
     </record>     
+    -->
     <!--  TICKET 102  -  DEVELOPED BY SEBASTIAN MENDEZ  -  END   -->
   </data>
 </odoo>  
