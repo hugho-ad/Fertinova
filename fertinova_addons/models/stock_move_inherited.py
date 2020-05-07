@@ -185,7 +185,7 @@ class StockMoveLine(models.Model):
           product_id = product_id_aux #make product ids equal
         else:  
           #When product ids are equal just add values to accumulated quantity:
-          accumulated_qty_aux += record.operative_qty
+          accumulated_qty_aux = accumulated_qty_aux + record.operative_qty
           record.accumulated_qty = accumulated_qty_aux                       
 
     
