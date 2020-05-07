@@ -93,25 +93,25 @@ class StockMoveLine(models.Model):
                              digits=dp.get_precision('Product Unit of Measure'),
                              compute='_get_transfers') 
 
-    accumulated_qty = fields.Float(string='Accumulated Quantity', 
-                                   digits=dp.get_precision('Product Unit of Measure'),
-                                   compute='_get_accumulated_qty')                               
+    #accumulated_qty = fields.Float(string='Accumulated Quantity', 
+    #                               digits=dp.get_precision('Product Unit of Measure'),
+    #                               compute='_get_accumulated_qty')                               
 
     price_unit = fields.Float(string='Price Unit', 
                               digits=dp.get_precision('Product Unit of Measure'), 
                               compute='_get_price_unit') 
 
-    accumulated_ammount = fields.Float(string='Accumulated Ammount', 
-                                       digits=dp.get_precision('Product Unit of Measure'),
-                                       compute='_get_accumulated_ammount')   
+    #accumulated_ammount = fields.Float(string='Accumulated Ammount', 
+    #                                   digits=dp.get_precision('Product Unit of Measure'),
+    #                                   compute='_get_accumulated_ammount')   
 
-    calculated_average_cost = fields.Float(string='Calculated Average Cost', 
-                                           digits=dp.get_precision('Product Unit of Measure'),
-                                           compute='_get_calculated_average_cost')   
+    #calculated_average_cost = fields.Float(string='Calculated Average Cost', 
+    #                                       digits=dp.get_precision('Product Unit of Measure'),
+    #                                       compute='_get_calculated_average_cost')   
 
-    average_cost_difference = fields.Float(string='Average Cost Difference', 
-                                           digits=dp.get_precision('Product Unit of Measure'),
-                                           compute='_get_average_cost_difference')                                             
+    #average_cost_difference = fields.Float(string='Average Cost Difference', 
+    #                                       digits=dp.get_precision('Product Unit of Measure'),
+    #                                       compute='_get_average_cost_difference')                                             
 
 
     #########################################################
@@ -170,23 +170,23 @@ class StockMoveLine(models.Model):
           record.transfers = 0.0
 
 
-    @api.depends('product_id', 'operative_qty')
-    def _get_accumulated_qty(self):
-      '''This method computes the value of accumulated_qty'''
-      product_id = None #product id necessary for comparing when it is different
-      accumulated_qty_aux = 0.0
+    #@api.depends('product_id', 'operative_qty')
+    #def _get_accumulated_qty(self):
+    #  '''This method computes the value of accumulated_qty'''
+    #  product_id = None #product id necessary for comparing when it is different
+    #  accumulated_qty_aux = 0.0
 
-      for record in self:
-        product_id_aux = record.product_id.id #Obtain product id 
-        if product_id != product_id_aux:
+    #  for record in self:
+    #    product_id_aux = record.product_id.id #Obtain product id 
+    #    if product_id != product_id_aux:
           #Validation for first item belonging to a product given:    
-          record.accumulated_qty = record.operative_qty 
-          accumulated_qty_aux = record.accumulated_qty
-          product_id = product_id_aux #make product ids equal
-        else:  
+    #      record.accumulated_qty = record.operative_qty 
+    #      accumulated_qty_aux = record.accumulated_qty
+    #      product_id = product_id_aux #make product ids equal
+    #    else:  
           #When product ids are equal just add values to accumulated quantity:
-          accumulated_qty_aux = accumulated_qty_aux + record.operative_qty
-          record.accumulated_qty = accumulated_qty_aux                       
+    #      accumulated_qty_aux = accumulated_qty_aux + record.operative_qty
+    #      record.accumulated_qty = accumulated_qty_aux                       
 
     
     @api.depends('qty_done', 'x_studio_valor')
@@ -200,7 +200,7 @@ class StockMoveLine(models.Model):
           #price unit = value / quantity done                
           record.price_unit = record.x_studio_valor / record.qty_done      
       
-
+    """
     @api.depends('x_studio_valor')
     def _get_accumulated_ammount(self):
       '''This method computes the value of accumulated_ammount'''
@@ -248,4 +248,5 @@ class StockMoveLine(models.Model):
         else:  
           #When product ids are equal just add values to accumulated ammount:
           auxiliar_ammount -= record.average_cost_difference
-          record.average_cost_difference = auxiliar_ammount                                                    
+          record.average_cost_difference = auxiliar_ammount  
+    """                                                  
