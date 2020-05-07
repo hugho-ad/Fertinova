@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
+    <!--  TICKET 028  -  DEVELOPED BY SEBASTIAN MENDEZ  -  START   -->
     <!--Purchase Order Form Inherited where new column qty_to_receive was added-->
     <record id="purchase_order_line_inherited" model="ir.ui.view">
         <field name="name">purchase.order.line.inherited</field>
@@ -12,6 +13,6 @@
             </xpath>        
         </field>
     </record>
-
+    <!--  TICKET 028  -  DEVELOPED BY SEBASTIAN MENDEZ  -  END   -->
   </data>
 </odoo> 
