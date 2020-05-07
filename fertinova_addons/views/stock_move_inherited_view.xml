@@ -13,7 +13,7 @@
                 <field name="inputs" />
                 <field name="outputs" />
                 <field name="transfers" />
-                <field name="accumulated_qty" />                   
+                <!-- <field name="accumulated_qty" /> -->                  
                 <field name="price_unit" />   
             </field>
         </field>
