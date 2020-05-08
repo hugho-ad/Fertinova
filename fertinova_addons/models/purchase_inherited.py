@@ -31,14 +31,13 @@ class PurchaseOrder(models.Model):
         purchase_order_lines = pur_ord_lin_obj.search([('order_id', '=', self.id)])
         
         #Validate if the currency of purchase order is not Mexican Peso (MXN):
-        mxn = self.env.ref('base.MXN')
-        if self.currency_id.id != mxn.id: 
+        #mxn = self.env.ref('base.MXN')
+        currency_of_company = self.env['res.company'].search([('id', '=', self.company_id.id)]).currency_id.id
+
+        if currency_of_company != self.currency_id.id: 
             #If the currency is different to MXN, perform conversion:
-            rate = self.env['res.currency.rate'].search([('id', '=', self.currency_id.id)]).rate
-            if rate != 0:
-                conversion_factor = 1 / rate
-            else:
-                conversion_factor = 1                 
+            rate = self.env['res.currency.rate'].search([('id', '=', self.currency_id.id)]).rate   
+            conversion_factor = 1 / rate               
         
         #for value in self.order_line.filtered("product_id.product_tmpl_id.valid_price_unit"):
         for value in purchase_order_lines.ids:
@@ -52,12 +51,12 @@ class PurchaseOrder(models.Model):
             #Validate if checkbox in product.template is True in order to proceed:
             if valid_price_unit == True:
                 #Conversion to Mexican Pesos (MXN) of sale price:
-                if self.currency_id.id != mxn.id: 
+                if currency_of_company != self.currency_id.id: 
                     #It is necessary to calculate the new value of currency:  
-                    sale_price = float(sale_price) * float(conversion_factor)
+                    sale_price = float(sale_price) * float(conversion_factor)                   
 
                 #Get price_unit of each line from purchase order line:
-                price_unit = pur_ord_lin_obj.search([('id', '=', value)]).price_unit               
+                price_unit = pur_ord_lin_obj.search([('id', '=', value)]).price_unit            
 
                 #Validation in order to avoid purchases when price unit is lesser than sale price:
                 if float(price_unit) > sale_price:
