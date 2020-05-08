@@ -18,7 +18,6 @@
         #'security/ir.model.access.csv',
         
         #Views:
-        'views/product_template_inherited_view.xml',
         'views/purchase_inherited_view.xml',
         'views/sale_inherited_view.xml',       
         'views/stock_move_inherited_view.xml',
