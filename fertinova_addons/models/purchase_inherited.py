@@ -35,7 +35,10 @@ class PurchaseOrder(models.Model):
         if self.currency_id.id != mxn.id: 
             #If the currency is different to MXN, perform conversion:
             rate = self.env['res.currency.rate'].search([('id', '=', self.currency_id.id)]).rate
-            conversion_factor = 1 / rate
+            if rate != 0:
+                conversion_factor = 1 / rate
+            else:
+                conversion_factor = 1                 
         
         #for value in self.order_line.filtered("product_id.product_tmpl_id.valid_price_unit"):
         for value in purchase_order_lines.ids:
