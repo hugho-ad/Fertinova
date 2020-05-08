@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>    
+  <data>  
+    <!--  TICKET 108  -  DEVELOPED BY SEBASTIAN MENDEZ  -  START   -->    
     <!--Stock Picking Form Inherited where new column analytic_account was added-->
     <record id="stock_picking_form_inherited" model="ir.ui.view">
         <field name="name">stock.picking.form.inherited</field>
@@ -13,6 +14,6 @@
             </xpath>
         </field>
     </record> 
-
+    <!--  TICKET 108  -  DEVELOPED BY SEBASTIAN MENDEZ  -  END   -->        
   </data>
 </odoo>  
