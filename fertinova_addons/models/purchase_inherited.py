@@ -2,7 +2,7 @@
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
-from odoo.tools.translate import _    
+from odoo.tools.translate import _   
 
 
 #//////////////////////////////////////////////////////////////////////////////////////////////#
@@ -36,7 +36,13 @@ class PurchaseOrder(models.Model):
 
         if currency_of_company != self.currency_id.id: 
             #If the currency is different to MXN, perform conversion:
-            rate = self.env['res.currency.rate'].search([('id', '=', self.currency_id.id)]).rate   
+            rate = self.env['res.currency.rate'].search([('id', '=', self.currency_id.id)]).rate              
+                #Query for retrieve rate:            
+                #sql_query = """SELECT rate FROM res_currency_rate WHERE id = %s;"""
+                #self.env.cr.execute(sql_query, (self.currency_id.id,))
+                #rate_aid = self.env.cr.fetchone()
+                #rate_aux = rate_aid[0] 
+                #_logger.info("\n\n\n\n rate_aux: %s", rate_aux)            
             conversion_factor = 1 / rate               
         
         #for value in self.order_line.filtered("product_id.product_tmpl_id.valid_price_unit"):
