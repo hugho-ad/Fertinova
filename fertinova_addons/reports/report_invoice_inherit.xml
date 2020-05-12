@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--  TICKET 103  -  DEVELOPED BY SEBASTIAN MENDEZ  -  START   -->
+<!-- Add of new label of payment commitment -->
+    <template id="report_invoice_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@class='clearfix']" position="after">
+            <div class="container" t-if="o.company_id.id == 2">
+                <p class="text-justify">  
+                    I MUST AND I WILL PAY WITH DISPOSITION TO GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. 
+                    IN THIS CITY OF ATOTONILCO EL ALTO, JALISCO, MEXICO OR ANY OTHER THAT REQUIRES THE 
+                    PAYMENT, ON THE DATE OF <b><span t-field="o.date"/></b> THE AMOUNT OF 
+                    <b><span t-field="o.amount_total"/></b> VALUE OF THE MERCHANDISE OR SERVICE THAT HAS 
+                    BEEN RECEIVED TO MY FULL SATISFACTION THIS PAYMENT IS MERCANTILE AND IS GOVERNED BY 
+                    THE FEDERAL LAW OF SECURITIES AND CREDIT OPERATIONS IN ITS ARTICLE 173, FINAL PART 
+                    AND CORRELATIVE ITEMS FOR NOT BEING DIRECT PAYMENT. FAILURE TO BE PAID AT ITS DUE 
+                    DEADLINE WILL CAUSE THE ___% MONTHLY MORATORY INTEREST UNTIL ITS TOTAL LIQUIDATION.                                                  
+                </p>
+                <p class="text-center">____________________</p>
+                <p class="text-center">SIGNATURE OF CONFORMITY</p>
+            </div>
+        </xpath>      
+    </template>
+    <!--  TICKET 103  -  DEVELOPED BY SEBASTIAN MENDEZ  -  END   -->
+</odoo> 

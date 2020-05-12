@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-07 22:18+0000\n"
-"PO-Revision-Date: 2020-05-07 22:18+0000\n"
+"POT-Creation-Date: 2020-05-12 23:17+0000\n"
+"PO-Revision-Date: 2020-05-12 23:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,29 +16,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: fertinova_addons
-#: code:addons/fertinova_addons/models/purchase_inherited.py:61
+#: code:addons/fertinova_addons/models/purchase_inherited.py:69
 #, python-format
 msgid "\n"
 "The purchase price of the product %s $%s is superior than sales price $%s\n"
 ""
-msgid "\n"
-msgstr "El precio de compra del producto %s $%s es superior que el precio de venta $%s\n"
+msgstr "\n"
+"El precio del compra del producto %s $%s es superior que el precio de venta $%s\n"
 ""
 
 #. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
 msgid "Accept"
 msgstr "Aceptar"
-
-#. module: fertinova_addons
-#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move_line__accumulated_ammount
-msgid "Accumulated Ammount"
-msgstr "Monto Acumulado"
-
-#. module: fertinova_addons
-#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move_line__accumulated_qty
-msgid "Accumulated Quantity"
-msgstr "Cantidad Acumulada"
 
 #. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__analytic_account_id
@@ -59,16 +49,6 @@ msgid "Assign Analytic Accounts and Tags"
 msgstr "Asignar Cuentas y Etiquetas Analíticas"
 
 #. module: fertinova_addons
-#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move_line__average_cost_difference
-msgid "Average Cost Difference"
-msgstr "Diferencia de Costo Promedio"
-
-#. module: fertinova_addons
-#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move_line__calculated_average_cost
-msgid "Calculated Average Cost"
-msgstr "Costo Promedio Calculado"
-
-#. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
 msgid "Cancel"
 msgstr "Cancelar"
@@ -87,6 +67,15 @@ msgstr "Creado el"
 #: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
+
+#. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
+msgid "I MUST AND I WILL PAY WITH DISPOSITION TO GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. \n"
+"                    IN THIS CITY OF ATOTONILCO EL ALTO, JALISCO, MEXICO OR ANY OTHER THAT REQUIRES THE \n"
+"                    PAYMENT, ON THE DATE OF "
+msgstr "DEBO Y PAGARÉ A LA ORDEN DE GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. \n"
+"                    EN ESTA CIUDAD DE ATOTONILCO EL ALTO, JALISCO, MÉXICO O EN CUALQUIERA  OTRA QUE SE REQUIERA EL"       
+"                    PAGO. CON FECHA DE "
 
 #. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__id
@@ -129,11 +118,6 @@ msgid "Price Unit"
 msgstr "Precio Unitario"
 
 #. module: fertinova_addons
-#: model:ir.model,name:fertinova_addons.model_product_product
-msgid "Product"
-msgstr "Producto"
-
-#. module: fertinova_addons
 #: model:ir.model,name:fertinova_addons.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
 msgstr "Movimientos de Producto (Stock Move Line)"
@@ -170,6 +154,11 @@ msgid "Quantity to receive"
 msgstr "Cantidad a recibir"
 
 #. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
+msgid "SIGNATURE OF CONFORMITY"
+msgstr "FIRMA DE CONFORMIDAD"
+
+#. module: fertinova_addons
 #: model:ir.model,name:fertinova_addons.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
@@ -178,6 +167,11 @@ msgstr "Línea de pedido de venta"
 #: model:ir.model,name:fertinova_addons.model_stock_move
 msgid "Stock Move"
 msgstr "Movimiento de existencias"
+
+#. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
+msgid " THE AMOUNT OF "
+msgstr " EL IMPORTE DE "
 
 #. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
@@ -190,6 +184,15 @@ msgid "Transfers"
 msgstr "Transferencias"
 
 #. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
+msgid "VALUE OF THE MERCHANDISE OR SERVICE THAT HAS \n"
+"                    BEEN RECEIVED TO MY FULL SATISFACTION THIS PAYMENT IS MERCANTILE AND IS GOVERNED BY \n"
+"                    THE FEDERAL LAW OF SECURITIES AND CREDIT OPERATIONS IN ITS ARTICLE 173, FINAL PART \n"
+"                    AND CORRELATIVE ITEMS FOR NOT BEING DIRECT PAYMENT. FAILURE TO BE PAID AT ITS DUE \n"
+"                    DEADLINE WILL CAUSE THE ___% MONTHLY MORATORY INTEREST UNTIL ITS TOTAL LIQUIDATION."
+msgstr "VALOR DE LA MERCANCIA  O SERVICIO QUE SE HA RECIBIDO A MI ENTERA SATISFACCIÓN ESTE PAGARÉ ES  MERCANTIL Y ESTA REGIDO POR LA LEY FEDERAL DE TÍTULOS Y OPERACIONES DE  CRÉDITO EN SU ARTÍCULO 173 PARTE FINAL Y ARTÍCULOS CORRELATIVOS POR NO  SER PAGARÉ DOMICILIADO. DE NO SER PAGADO A SU VENCIMENTO SE CAUSARA  EL ___% MENSUAL DE INTERES MORATORIOS HASTA SU TOTAL LIQUIDACIÓN."
+
+#. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
 msgid "Warning:"
 msgstr "Advertencia"
@@ -198,3 +201,8 @@ msgstr "Advertencia"
 #: model:ir.model,name:fertinova_addons.model_analytic_acc_tag_wizard
 msgid "Wizard for adding analytic accounts and labels"
 msgstr "Wizard para agregar cuentas y etiquetas analíticas"
+
+#. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
+msgid "____________________"
+msgstr "____________________"
