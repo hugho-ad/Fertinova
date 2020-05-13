@@ -5,6 +5,7 @@
     <template id="report_invoice_inherit" inherit_id="account.report_invoice_document">
         <xpath expr="//div[@class='clearfix']" position="after">
             <div class="container" t-if="o.company_id.id == 2">
+                <!--<span t-field="o.company_id.id"/>-->
                 <p class="text-justify">  
                     I MUST AND I WILL PAY WITH DISPOSITION TO GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. 
                     IN THIS CITY OF ATOTONILCO EL ALTO, JALISCO, MEXICO OR ANY OTHER THAT REQUIRES THE 

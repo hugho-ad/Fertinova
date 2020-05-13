@@ -73,9 +73,7 @@ msgstr "Nombre a mostrar"
 msgid "I MUST AND I WILL PAY WITH DISPOSITION TO GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. \n"
 "                    IN THIS CITY OF ATOTONILCO EL ALTO, JALISCO, MEXICO OR ANY OTHER THAT REQUIRES THE \n"
 "                    PAYMENT, ON THE DATE OF "
-msgstr "DEBO Y PAGARÉ A LA ORDEN DE GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. \n"
-"                    EN ESTA CIUDAD DE ATOTONILCO EL ALTO, JALISCO, MÉXICO O EN CUALQUIERA  OTRA QUE SE REQUIERA EL"       
-"                    PAGO. CON FECHA DE "
+msgstr "DEBO Y PAGARÉ A LA ORDEN DE GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. EN ESTA CIUDAD DE ATOTONILCO EL ALTO, JALISCO, MÉXICO O EN CUALQUIERA  OTRA QUE SE REQUIERA EL PAGO. CON FECHA DE "
 
 #. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__id
