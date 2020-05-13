@@ -6,6 +6,7 @@
         <xpath expr="//div[@class='clearfix']" position="after">
             <div class="container" t-if="o.company_id.id == 2">
                 <!--<span t-field="o.company_id.id"/>-->
+                <p></p>
                 <p class="text-justify">  
                     I MUST AND I WILL PAY WITH DISPOSITION TO GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. 
                     IN THIS CITY OF ATOTONILCO EL ALTO, JALISCO, MEXICO OR ANY OTHER THAT REQUIRES THE 
@@ -16,7 +17,7 @@
                     AND CORRELATIVE ITEMS FOR NOT BEING DIRECT PAYMENT. FAILURE TO BE PAID AT ITS DUE 
                     DEADLINE WILL CAUSE THE ___% MONTHLY MORATORY INTEREST UNTIL ITS TOTAL LIQUIDATION.                                                  
                 </p>
-                <p class="text-center">____________________</p>
+                <p class="text-center">_________________________</p>
                 <p class="text-center">SIGNATURE OF CONFORMITY</p>
             </div>
         </xpath>      

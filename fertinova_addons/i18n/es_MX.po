@@ -198,5 +198,5 @@ msgstr "Wizard para agregar cuentas y etiquetas analíticas"
 
 #. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
-msgid "____________________"
-msgstr "____________________"
+msgid "_________________________"
+msgstr "_________________________"
