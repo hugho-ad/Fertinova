@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <!--  TICKET 103  -  DEVELOPED BY SEBASTIAN MENDEZ  -  START   -->
+
 <!-- Add of new label of payment commitment -->
     <template id="report_invoice_inherit" inherit_id="account.report_invoice_document">
         <xpath expr="//div[@class='clearfix']" position="after">
