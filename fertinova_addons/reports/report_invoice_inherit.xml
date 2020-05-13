@@ -8,17 +8,16 @@
                 <!--<span t-field="o.company_id.id"/>-->
                 <p></p>
                 <p class="text-justify">  
-                    I MUST AND I WILL PAY WITH DISPOSITION TO GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. 
-                    IN THIS CITY OF ATOTONILCO EL ALTO, JALISCO, MEXICO OR ANY OTHER THAT REQUIRES THE 
-                    PAYMENT, ON THE DATE OF <b><span t-field="o.date"/></b> THE AMOUNT OF 
-                    <b><span t-field="o.amount_total"/></b> VALUE OF THE MERCHANDISE OR SERVICE THAT HAS 
-                    BEEN RECEIVED TO MY FULL SATISFACTION THIS PAYMENT IS MERCANTILE AND IS GOVERNED BY 
-                    THE FEDERAL LAW OF SECURITIES AND CREDIT OPERATIONS IN ITS ARTICLE 173, FINAL PART 
-                    AND CORRELATIVE ITEMS FOR NOT BEING DIRECT PAYMENT. FAILURE TO BE PAID AT ITS DUE 
-                    DEADLINE WILL CAUSE THE ___% MONTHLY MORATORY INTEREST UNTIL ITS TOTAL LIQUIDATION.                                                  
+                    DEBO Y PAGARÉ A LA ORDEN DE GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. EN ESTA CIUDAD 
+                    DE ATOTONILCO EL ALTO, JALISCO, MÉXICO O EN CUALQUIERA OTRA QUE SE REQUIERA EL PAGO. 
+                    CON FECHA DE <b><span t-field="o.date"/></b> EL IMPORTE DE <b><span t-field="o.amount_total"/></b> 
+                    VALOR DE LA MERCANCIA O SERVICIO QUE SE HA RECIBIDO A MI ENTERA SATISFACCIÓN ESTE PAGARÉ 
+                    ES MERCANTIL Y ESTA REGIDO POR LA LEY FEDERAL DE TÍTULOS Y OPERACIONES DE CRÉDITO EN SU 
+                    ARTÍCULO 173 PARTE FINAL Y ARTÍCULOS CORRELATIVOS POR NO SER PAGARÉ DOMICILIADO. DE NO SER 
+                    PAGADO A SU VENCIMENTO SE CAUSARA EL ___% MENSUAL DE INTERES MORATORIOS HASTA SU TOTAL LIQUIDACIÓN.                                                
                 </p>
                 <p class="text-center">_________________________</p>
-                <p class="text-center">SIGNATURE OF CONFORMITY</p>
+                <p class="text-center">FIRMA DE CONFORMIDAD</p>
             </div>
         </xpath>      
     </template>
