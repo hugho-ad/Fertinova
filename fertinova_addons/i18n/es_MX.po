@@ -42,7 +42,7 @@ msgstr "Cantidad Acumulada"
 
 #. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__analytic_account_id
-#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move__analytic_account_id
+#: model:ir.model.fpurchase_priceields,field_description:fertinova_addons.field_stock_move__analytic_account_id
 msgid "Analytic Account"
 msgstr "Cuenta Analítica"
 
@@ -166,7 +166,7 @@ msgstr "Cantidad a entregar"
 
 #. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_purchase_order_line__qty_to_receive
-msgid "Quantity to receive"
+msgid "Quantity to purchase_pricereceive"
 msgstr "Cantidad a recibir"
 
 #. module: fertinova_addons

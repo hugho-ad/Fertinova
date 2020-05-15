@@ -51,7 +51,7 @@ class PurchaseOrderLine(models.Model):
             sale_price = self.product_id.product_tmpl_id.list_price
         
             if purchase_price > sale_price:
-                msg = _('\nThe purchase price of the product %s $%s is superior than sales price $%s\n') % (self.name, purchase_price, sale_price)
+                msg = _('\nThe purchase price of the product %s $%s is superior than sales price $%s\n') % (self.name, "{0:.4f}".format(purchase_price), sale_price)
                 raise UserError(msg)   
 #//////////////////////////////////////////////////////////////////////////////////////////////#
 #   TICKET 035    DEVELOPED BY SEBASTIAN MENDEZ    --     END
