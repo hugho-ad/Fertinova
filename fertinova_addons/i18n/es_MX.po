@@ -21,8 +21,8 @@ msgstr ""
 msgid "\n"
 "The purchase price of the product %s $%s is superior than sales price $%s\n"
 ""
-msgid "\n"
-msgstr "El precio de compra del producto %s $%s es superior que el precio de venta $%s\n"
+msgstr "\n" 
+"El precio de compra del producto %s $%s es superior que el precio de venta $%s\n"
 ""
 
 #. module: fertinova_addons
