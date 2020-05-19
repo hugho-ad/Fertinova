@@ -2,7 +2,7 @@
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
-from odoo.tools.translate import _   
+from odoo.tools.translate import _  
 
 
 #//////////////////////////////////////////////////////////////////////////////////////////////#
@@ -34,3 +34,25 @@ class PurchaseOrderLine(models.Model):
 #//////////////////////////////////////////////////////////////////////////////////////////////#
 #   TICKET 028    DEVELOPED BY SEBASTIAN MENDEZ    --     END
 #//////////////////////////////////////////////////////////////////////////////////////////////#  
+
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+#   TICKET 035    DEVELOPED BY SEBASTIAN MENDEZ    --     START
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+    @api.onchange('price_unit')
+    def validation_on_price_unit(self):
+        '''This method intends to validate that a product must not be purchased more expensive 
+           which is sold by company'''
+        msg = ""
+        #Initial validation in order to ascertain that checkbox in "product_template" model is ckecked up:        
+        if self.product_id.product_tmpl_id.valid_price_unit == True: 
+            #Use of "_convert()" method; 
+            #parameters ===> ammount, currency to apply conversion, company, date round=True
+            purchase_price = self.currency_id._convert(self.price_unit, self.env.user.currency_id, self.env.user.company_id, self.order_id.date_order, round=True)         
+            sale_price = self.product_id.product_tmpl_id.list_price
+        
+            if purchase_price > sale_price:
+                msg = _('\nThe purchase price of the product %s $%s is superior than sales price $%s\n') % (self.name, "{0:.4f}".format(purchase_price), sale_price)
+                raise UserError(msg)   
+#//////////////////////////////////////////////////////////////////////////////////////////////#
+#   TICKET 035    DEVELOPED BY SEBASTIAN MENDEZ    --     END
+#//////////////////////////////////////////////////////////////////////////////////////////////#

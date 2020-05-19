@@ -16,13 +16,23 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: fertinova_addons
+#: code:addons/fertinova_addons/models/purchase_inherited.py:61
+#, python-format
+msgid "\n"
+"The purchase price of the product %s $%s is superior than sales price $%s\n"
+""
+msgstr "\n" 
+"El precio de compra del producto %s $%s es superior que el precio de venta $%s\n"
+""
+
+#. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
 msgid "Accept"
 msgstr "Aceptar"
 
 #. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__analytic_account_id
-#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move__analytic_account_id
+#: model:ir.model.fpurchase_priceields,field_description:fertinova_addons.field_stock_move__analytic_account_id
 msgid "Analytic Account"
 msgstr "Cuenta Analítica"
 
@@ -150,7 +160,7 @@ msgstr "Cantidad a entregar"
 
 #. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_purchase_order_line__qty_to_receive
-msgid "Quantity to receive"
+msgid "Quantity to purchase_pricereceive"
 msgstr "Cantidad a recibir"
 
 #. module: fertinova_addons
