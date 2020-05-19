@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-07 22:18+0000\n"
-"PO-Revision-Date: 2020-05-07 22:18+0000\n"
+"POT-Creation-Date: 2020-05-13 12:26+0000\n"
+"PO-Revision-Date: 2020-05-13 12:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,16 +31,6 @@ msgid "Accept"
 msgstr "Aceptar"
 
 #. module: fertinova_addons
-#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move_line__accumulated_ammount
-msgid "Accumulated Ammount"
-msgstr "Monto Acumulado"
-
-#. module: fertinova_addons
-#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move_line__accumulated_qty
-msgid "Accumulated Quantity"
-msgstr "Cantidad Acumulada"
-
-#. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__analytic_account_id
 #: model:ir.model.fpurchase_priceields,field_description:fertinova_addons.field_stock_move__analytic_account_id
 msgid "Analytic Account"
@@ -59,16 +49,6 @@ msgid "Assign Analytic Accounts and Tags"
 msgstr "Asignar Cuentas y Etiquetas Analíticas"
 
 #. module: fertinova_addons
-#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move_line__average_cost_difference
-msgid "Average Cost Difference"
-msgstr "Diferencia de Costo Promedio"
-
-#. module: fertinova_addons
-#: model:ir.model.fields,field_description:fertinova_addons.field_stock_move_line__calculated_average_cost
-msgid "Calculated Average Cost"
-msgstr "Costo Promedio Calculado"
-
-#. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
 msgid "Cancel"
 msgstr "Cancelar"
@@ -84,9 +64,28 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
+msgid "DEBO Y PAGARÉ A LA ORDEN DE GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. EN ESTA CIUDAD \n"
+"                    DE ATOTONILCO EL ALTO, JALISCO, MÉXICO O EN CUALQUIERA OTRA QUE SE REQUIERA EL PAGO. \n"
+"                    CON FECHA DE"
+msgstr "DEBO Y PAGARÉ A LA ORDEN DE GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. EN ESTA CIUDAD \n"
+"                    DE ATOTONILCO EL ALTO, JALISCO, MÉXICO O EN CUALQUIERA OTRA QUE SE REQUIERA EL PAGO. \n"
+"                    CON FECHA DE"
+
+#. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
+
+#. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
+msgid "EL IMPORTE DE"
+msgstr "EL IMPORTE DE"
+
+#. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
+msgid "FIRMA DE CONFORMIDAD"
+msgstr "FIRMA DE CONFORMIDAD"
 
 #. module: fertinova_addons
 #: model:ir.model.fields,field_description:fertinova_addons.field_analytic_acc_tag_wizard__id
@@ -127,11 +126,6 @@ msgstr "Salidas"
 #: model:ir.model.fields,field_description:fertinova_addons.field_stock_move_line__price_unit
 msgid "Price Unit"
 msgstr "Precio Unitario"
-
-#. module: fertinova_addons
-#: model:ir.model,name:fertinova_addons.model_product_product
-msgid "Product"
-msgstr "Producto"
 
 #. module: fertinova_addons
 #: model:ir.model,name:fertinova_addons.model_stock_move_line
@@ -190,6 +184,17 @@ msgid "Transfers"
 msgstr "Transferencias"
 
 #. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
+msgid "VALOR DE LA MERCANCIA O SERVICIO QUE SE HA RECIBIDO A MI ENTERA SATISFACCIÓN ESTE PAGARÉ \n"
+"                    ES MERCANTIL Y ESTA REGIDO POR LA LEY FEDERAL DE TÍTULOS Y OPERACIONES DE CRÉDITO EN SU \n"
+"                    ARTÍCULO 173 PARTE FINAL Y ARTÍCULOS CORRELATIVOS POR NO SER PAGARÉ DOMICILIADO. DE NO SER \n"
+"                    PAGADO A SU VENCIMENTO SE CAUSARA EL ___% MENSUAL DE INTERES MORATORIOS HASTA SU TOTAL LIQUIDACIÓN."
+msgstr "VALOR DE LA MERCANCIA O SERVICIO QUE SE HA RECIBIDO A MI ENTERA SATISFACCIÓN ESTE PAGARÉ \n"
+"                    ES MERCANTIL Y ESTA REGIDO POR LA LEY FEDERAL DE TÍTULOS Y OPERACIONES DE CRÉDITO EN SU \n"
+"                    ARTÍCULO 173 PARTE FINAL Y ARTÍCULOS CORRELATIVOS POR NO SER PAGARÉ DOMICILIADO. DE NO SER \n"
+"                    PAGADO A SU VENCIMENTO SE CAUSARA EL ___% MENSUAL DE INTERES MORATORIOS HASTA SU TOTAL LIQUIDACIÓN."
+
+#. module: fertinova_addons
 #: model_terms:ir.ui.view,arch_db:fertinova_addons.wizard_acc_tag_form_view
 msgid "Warning:"
 msgstr "Advertencia"
@@ -198,3 +203,8 @@ msgstr "Advertencia"
 #: model:ir.model,name:fertinova_addons.model_analytic_acc_tag_wizard
 msgid "Wizard for adding analytic accounts and labels"
 msgstr "Wizard para agregar cuentas y etiquetas analíticas"
+
+#. module: fertinova_addons
+#: model_terms:ir.ui.view,arch_db:fertinova_addons.report_invoice_inherit
+msgid "_________________________"
+msgstr "_________________________"
