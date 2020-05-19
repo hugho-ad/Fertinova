@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
+    <!--  TICKET 035  -  DEVELOPED BY SEBASTIAN MENDEZ  -  START   -->
     <!--Product Product Form Inherited where new checkbox was added-->
     <record id="product_template_view_inherit" model="ir.ui.view">
         <field name="name">product.template.product.form.inherit</field>
@@ -12,6 +13,6 @@
           </xpath>          
         </field>
     </record>
-
+    <!--  TICKET 035  -  DEVELOPED BY SEBASTIAN MENDEZ  -  END   -->
   </data>
 </odoo>   
