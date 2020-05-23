@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--  TICKET 103  -  DEVELOPED BY SEBASTIAN MENDEZ  -  START   -->
+
+<!-- Add of new label of payment commitment -->
+    <template id="report_invoice_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@class='clearfix']" position="after">
+            <div class="container" t-if="o.company_id.id == 2">
+                <!--<span t-field="o.company_id.id"/>-->
+                <p></p>
+                <p class="text-justify">  
+                    DEBO Y PAGARÉ A LA ORDEN DE GRANERO EL CASTILLO S.P.R. DE R.L. DE C.V. EN ESTA CIUDAD 
+                    DE ATOTONILCO EL ALTO, JALISCO, MÉXICO O EN CUALQUIERA OTRA QUE SE REQUIERA EL PAGO. 
+                    CON FECHA DE <b><span t-field="o.date"/></b> EL IMPORTE DE <b><span t-field="o.amount_total"/></b> 
+                    VALOR DE LA MERCANCIA O SERVICIO QUE SE HA RECIBIDO A MI ENTERA SATISFACCIÓN ESTE PAGARÉ 
+                    ES MERCANTIL Y ESTA REGIDO POR LA LEY FEDERAL DE TÍTULOS Y OPERACIONES DE CRÉDITO EN SU 
+                    ARTÍCULO 173 PARTE FINAL Y ARTÍCULOS CORRELATIVOS POR NO SER PAGARÉ DOMICILIADO. DE NO SER 
+                    PAGADO A SU VENCIMENTO SE CAUSARA EL ___% MENSUAL DE INTERES MORATORIOS HASTA SU TOTAL LIQUIDACIÓN.                                                
+                </p>
+                <p class="text-center">_________________________</p>
+                <p class="text-center">FIRMA DE CONFORMIDAD</p>
+            </div>
+        </xpath>      
+    </template>
+    <!--  TICKET 103  -  DEVELOPED BY SEBASTIAN MENDEZ  -  END   -->
+</odoo> 
