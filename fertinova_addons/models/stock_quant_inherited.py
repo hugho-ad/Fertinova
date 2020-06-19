@@ -16,7 +16,16 @@ class StockQuant(models.Model):
         This is made by entering into STOCK > MAIN DATA {Menu} > PRODUCTS {Menuitem} > a given product > Smart Button {action_open_quants}"""
         
         #Calling in order to extend method 'action_view_stock_moves':
-        action = super(StockQuant, self).action_view_stock_moves()
+        # HERE IS WHERE WE NEED PASS THE LOCATION
+        
+        # Hugho-ad Code:
+        # Try this option:
+        action = super(StockQuant, self.with_context(location_id=self.location_id.id)).action_view_stock_moves()
+        # Or this:
+        ctx = action.get('context') or {}
+        ctx.update({'location_id': self.location_id.od})
+        action['context'] = str(ctx)
+        # End Hugho-ad Code:
 
         #Add location_id into the context:
         self = self.with_context(location_id=self.location_id.id)  
