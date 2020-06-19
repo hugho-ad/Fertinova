@@ -23,7 +23,7 @@ class StockQuant(models.Model):
         action = super(StockQuant, self.with_context(location_id=self.location_id.id)).action_view_stock_moves()
         # Or this:
         ctx = eval(action.get('context'))
-        ctx.update({'location_id': self.location_id.od})
+        ctx.update({'location_id': self.location_id.id})
         action['context'] = str(ctx)
         # End Hugho-ad Code:
 
